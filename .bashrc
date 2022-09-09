@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+# Append this line to ~/.bashrc to enable fzf keybindings for Bash:
+# source key-bindings.bash
+source /usr/share/doc/fzf/examples/key-bindings.bash
+source ~/bin/completion.bash
+# Append this line to ~/.bashrc to enable fuzzy auto-completion for Bash:
+# show hidden file in fzf 
+source ~/bin/fzf.bash 
+# jump back in fzf
+# source ~/bin/fzf-jump.bash
+#change color directory when wrong display color
+ # source ~/bin/lsColor
+
+
+# If not running interactively, don't do anything
+set -o vi
+alias vim='nvim $(fzf)'
+alias python=python3
+alias rsync='rsync --stats --progress'
+
+=======
 # make alias for nvim 0.5
 #make git online
 alias vim=nvim
@@ -9,6 +33,7 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 # If not running interactively, don't do anything
+>>>>>>> a388741aa1887d0770daee1a39351691db65d707
 case $- in
     *i*) ;;
       *) return;;
@@ -63,10 +88,17 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
+<<<<<<< HEAD
+	PS1='$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+	PS1='$ '
+=======
     PS1='$ '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='$ '
+>>>>>>> a388741aa1887d0770daee1a39351691db65d707
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
@@ -74,7 +106,11 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
+<<<<<<< HEAD
+	PS1='$ '
+=======
     PS1="$PS1"
+>>>>>>> a388741aa1887d0770daee1a39351691db65d707
     #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
@@ -94,7 +130,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
+<<<<<<< HEAD
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+=======
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+>>>>>>> a388741aa1887d0770daee1a39351691db65d707
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -110,13 +150,31 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+<<<<<<< HEAD
+#run file from directory
+export PATH=~/bin:.:$PATH
+
+=======
+>>>>>>> a388741aa1887d0770daee1a39351691db65d707
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+<<<<<<< HEAD
+#Fzf complete directory
+
+
+if [ -f ~/makeMoveEasier.sh ]; then 
+	. ~/makeMoveEasier.sh
+fi
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# source /etc/bash.bashrc).
+=======
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
+>>>>>>> a388741aa1887d0770daee1a39351691db65d707
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
