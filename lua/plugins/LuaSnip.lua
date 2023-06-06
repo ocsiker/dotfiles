@@ -8,9 +8,11 @@ return {
     "honza/vim-snippets",
     config = function()
       --make run from json vscode
-      require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/" } })
       --make run from snippets
       require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/" } })
+      --add file type
+      require("luasnip").filetype_extend({ "uml" }, { "plantuml" })
     end,
   },
   opts = {

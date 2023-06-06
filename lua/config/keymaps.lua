@@ -5,20 +5,20 @@
 --
 --
 -- This file is automatically loaded by lazyvim.config.init
-Util = require("lazyvim.util")
+local Util = require("util")
 
-function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    if opts.remap and not vim.g.vscode then
-      opts.remap = nil
-    end
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
+local function map(mode, lhs, rhs, opts)
+	local keys = require("lazy.core.handler").handlers.keys
+	---@cast keys LazyKeysHandler
+	-- do not create the keymap if a lazy keys handler exists
+	if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+		opts = opts or {}
+		opts.silent = opts.silent ~= false
+		if opts.remap and not vim.g.vscode then
+			opts.remap = nil
+		end
+		vim.keymap.set(mode, lhs, rhs, opts)
+	end
 end
 
 -- better up/down
@@ -47,15 +47,15 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- buffers
 if Util.has("bufferline.nvim") then
-  map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-  map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-  map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-  map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+	map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+	map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+	map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+	map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 else
-  map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-  map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+	map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+	map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+	map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+	map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 end
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
@@ -66,10 +66,10 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsea
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 map(
-  "n",
-  "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-  { desc = "Redraw / clear hlsearch / diff update" }
+	"n",
+	"<leader>ur",
+	"<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+	{ desc = "Redraw / clear hlsearch / diff update" }
 )
 
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
@@ -104,8 +104,8 @@ map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
 if not Util.has("trouble.nvim") then
-  map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
-  map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
+	map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
+	map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 end
 
 -- stylua: ignore start
@@ -157,7 +157,7 @@ vim.keymap.set('n', '<Leader>m', "<Cmd>lua require('maximize').toggle()<CR>")
 vim.keymap.set({ "n", "v" }, "s", "<nop", { noremap = true, desc = "Disable s keystroke" })
 vim.keymap.set("n", "sw", "<cmd>w<cr>", { noremap = true, desc = "Save window" })
 vim.keymap.set({ "n", "v" }, "so", "<cmd>so<cr>", { noremap = true, desc = "Source file" })
-print("heajf")
+print("Ocsiker have just sourced")
 
 -- Unmap mappings used by tmux plugin
 -- TODO(vintharas): There's likely a better way to do this.

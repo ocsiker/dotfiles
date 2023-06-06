@@ -5,7 +5,7 @@ return {
     -- char = "▏",
     char = "│",
     filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-    show_trailing_blankline_indent = false,
+    show_trailing_blankline_indent = true,
     show_current_context = false,
   },
 }

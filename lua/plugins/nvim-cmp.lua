@@ -5,9 +5,11 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
+    "kristijanhusak/vim-dadbod-completion",
   },
   opts = function()
     local cmp = require("cmp")
@@ -34,10 +36,11 @@ return {
         }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       }),
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
+        { name = "nvim_lsp", keyword_length = 1 },
+        { name = "luasnip", keyword_length = 2 },
+        { name = "buffer", keyword_length = 3 },
         { name = "path" },
+        { name = "vim-dadbod-completion" },
       }),
       formatting = {
         format = function(_, item)
@@ -54,5 +57,9 @@ return {
         },
       },
     }
+    -- vim.api.nvim_exec2(
+    --   "autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }, {name = 'luasnip'}, {name = 'buffer'}} })"
+    -- )
+    --for database dadbod
   end,
 }

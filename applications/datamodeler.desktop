@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=DataModeler
+Exec=/usr/local/bin/datamodeler
+Icon=DataModeler
+Type=Application
+Encoding=UTF-8
+

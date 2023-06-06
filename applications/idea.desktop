@@ -1,0 +1,10 @@
+[Desktop Entry]                                                                 
+Encoding=UTF-8
+Name=IntelliJ IDEA
+Comment=IntelliJ IDEA
+Exec=/opt/idea-IU-231.8770.65/bin/idea.sh
+Icon=/opt/idea-IU-231.8770.65/bin/idea.png
+Terminal=false
+StartupNotify=true
+Type=Application
+

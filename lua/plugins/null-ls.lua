@@ -1,6 +1,6 @@
 return {
   "jose-elias-alvarez/null-ls.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  -- event = { "BufReadPre", "BufNewFile" },
   dependencies = { "mason.nvim" },
   opts = function()
     local nls = require("null-ls")
@@ -11,6 +11,9 @@ return {
         nls.builtins.diagnostics.fish,
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.shfmt,
+        nls.builtins.formatting.sqlfmt,
+        nls.builtins.formatting.sqlformat,
+        nls.builtins.formatting.sql_formatter,
         -- nls.builtins.diagnostics.flake8,
         nls.builtins.formatting.dart_format,
         nls.builtins.formatting.swiftlint,
@@ -21,6 +24,7 @@ return {
         nls.builtins.diagnostics.commitlint,
         nls.builtins.diagnostics.shellcheck,
         nls.builtins.completion.spell,
+        nls.builtins.completion.luasnip,
         nls.builtins.hover.dictionary,
       },
     }
