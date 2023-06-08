@@ -1,11 +1,10 @@
 return {
   "hrsh7th/nvim-cmp",
-  version = false, -- last release is way too old
-  event = "InsertEnter",
+  -- event = "InsertEnter",
+  -- event = "CompleteChanged",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
@@ -13,9 +12,22 @@ return {
   },
   opts = function()
     local cmp = require("cmp")
+    local luasnip = require("luasnip")
+
+    local check_backspace = function()
+      local col = vim.fn.col(".") - 1
+      return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+    end
+
     return {
       completion = {
-        completeopt = "menu,menuone,noinsert",
+        -- not show twice when load
+        autocomplete = {
+          cmp.TriggerEvent.TextChanged,
+          cmp.TriggerEvent.InsertEnter,
+        },
+        completeopt = "menu,menuone,noinsert,noselect",
+        keyword_length = 0,
       },
       snippet = {
         expand = function(args)
@@ -23,8 +35,8 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-Space>"] = cmp.mapping.scroll_docs(4),
         --       ["<C-Space>"] = cmp.mapping.complete(),
@@ -33,10 +45,44 @@ return {
         ["<S-CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
-        }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.expandable() then
+            luasnip.expand()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif check_backspace() then
+            fallback()
+          else
+            fallback()
+          end
+        end, {
+          "i",
+          "s",
+        }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, {
+          "i",
+          "s",
+        }),
       }),
       sources = cmp.config.sources({
-        { name = "nvim_lsp", keyword_length = 1 },
+        -- {
+        --   name = "nvim_lsp",
+        --   keyword_length = 1,
+        --   entry_filter = function(entry, ctx)
+        --     return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+        --   end,
+        -- },
         { name = "luasnip", keyword_length = 2 },
         { name = "buffer", keyword_length = 3 },
         { name = "path" },

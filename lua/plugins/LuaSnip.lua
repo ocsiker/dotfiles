@@ -1,36 +1,23 @@
 return {
+  lazy = false, --make snippets not load twice VERY IMPORTANT
   "L3MON4D3/LuaSnip",
-  build = (not jit.os:find("Windows"))
-      and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
-    or nil,
   dependencies = {
     "rafamadriz/friendly-snippets",
+    --make run from snippets
     "honza/vim-snippets",
-    config = function()
-      --make run from json vscode
-      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/" } })
-      --make run from snippets
-      require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/" } })
-      --add file type
-      require("luasnip").filetype_extend({ "uml" }, { "plantuml" })
-    end,
+    --make run from json vscode path with S paths
+    require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/Jsnippets/" } }),
+    --make run from snippets ---PATH not s just path
+    require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/Hsnippets" } }),
+    --add file type
+    require("luasnip").filetype_extend({ "uml" }, { "plantuml" }),
   },
   opts = {
     history = true,
     delete_check_events = "TextChanged",
-    paths = { "~/Alpha/sourceCode/snippets/" },
     enable_autosnippets = true,
+    vim.cmd("command! LuaSnipEdit lua require('luasnip.loaders').edit_snippet_files()"),
+    vim.cmd("command! LuaSnipStart lua require('luasnip')"),
   },
   -- stylua: ignore
-  keys = {
-    {
-      "<tab>",
-      function()
-        return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-      end,
-      expr = true, silent = true, mode = "i",
-    },
-    { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-    { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-  },
 }
