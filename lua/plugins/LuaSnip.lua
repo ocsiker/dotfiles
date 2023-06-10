@@ -6,7 +6,7 @@ return {
     --make run from snippets
     "honza/vim-snippets",
     --make run from json vscode path with S paths
-    require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/Jsnippets/" } }),
+    require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/Jsnippets" } }),
     --make run from snippets ---PATH not s just path
     require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/Alpha/sourceCode/snippets/Hsnippets" } }),
     --add file type

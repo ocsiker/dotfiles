@@ -76,17 +76,14 @@ return {
         }),
       }),
       sources = cmp.config.sources({
-        -- {
-        --   name = "nvim_lsp",
-        --   keyword_length = 1,
-        --   entry_filter = function(entry, ctx)
-        --     return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
-        --   end,
-        -- },
         { name = "luasnip", keyword_length = 2 },
+        { name = "vim-dadbod-completion" },
+        {
+          name = "nvim_lsp",
+          keyword_length = 1,
+        },
         { name = "buffer", keyword_length = 3 },
         { name = "path" },
-        { name = "vim-dadbod-completion" },
       }),
       formatting = {
         format = function(_, item)
@@ -98,9 +95,7 @@ return {
         end,
       },
       experimental = {
-        ghost_text = {
-          hl_group = "LspCodeLens",
-        },
+        ghost_text = true,
       },
     }
     -- vim.api.nvim_exec2(
