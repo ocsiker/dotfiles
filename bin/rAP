@@ -5,6 +5,6 @@
 #!/bin/bash
 
         /* -S make screen phone off */
-        scrcpy -S 
+        scrcpy -S --shortcut-mod=lctrl
 
 
