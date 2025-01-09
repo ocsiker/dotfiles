@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# to paste pic from clipboard to image in directory
+name=$(date '+%Y-%m-%d_%T').png
+if [[ $# -eq 0 ]]; then
+	name=$(date '+%Y-%m-%d_%T').png
+else
+	name=${1}.png
+
+fi
+xclip -selection clipboard -t image/png -o >./${name}
