@@ -1,0 +1,11 @@
+[Plugins]
+kdeconnect_batteryEnabled=true
+kdeconnect_clipboardEnabled=true
+kdeconnect_findmyphoneEnabled=true
+kdeconnect_findthisdeviceEnabled=true
+kdeconnect_mousepadEnabled=true
+kdeconnect_pingEnabled=true
+kdeconnect_presenterEnabled=true
+kdeconnect_runcommandEnabled=true
+kdeconnect_screensaver_inhibitEnabled=false
+kdeconnect_shareEnabled=true

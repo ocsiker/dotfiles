@@ -1,0 +1,9 @@
+{
+    "name": "com.mbid.vim.compose",
+    "description": "Vim Compose Extension Host",
+    "path": "/home/ocsiker/.local/bin/vim-compose-native-host",
+    "type": "stdio",
+    "allowed_origins": [
+        "chrome-extension://lafooengjljmipillledmadfcpannkbc/"
+    ]
+}

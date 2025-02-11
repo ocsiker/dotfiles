@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<map MAP_XML_VERSION="1.0">
+  <entry key="HISTORY_LINE_00" value="Math.toDegrees(Math.PI/3)"/>
+  <entry key="HISTORY_LINE_01" value="Math.toRadians(60)"/>
+  <entry key="HISTORY_LINE_02" value="Math.sin(30)"/>
+  <entry key="HISTORY_LINE_03" value="Math.sin(Math.PI/2)"/>
+  <entry key="HISTORY_LINE_04" value="clear"/>
+  <entry key="HISTORY_LINE_05" value="/vars"/>
+  <entry key="HISTORY_LINE_06" value="/exit"/>
+  <entry key="HISTORY_LINE_07" value="Math.exp(2)"/>
+  <entry key="HISTORY_LINE_08" value="Math.log(3.3)"/>
+  <entry key="HISTORY_LINE_09" value="Math.log10(100)"/>
+  <entry key="HISTORY_LINE_10" value="Math.ceil(3.4)"/>
+  <entry key="HISTORY_LINE_11" value="Math.cel(-2.3)"/>
+  <entry key="HISTORY_LINE_12" value="Math.ceil(-2.4)"/>
+  <entry key="HISTORY_LINE_13" value="/exit"/>
+  <entry key="HISTORY_LINE_14" value="Math.exp(1)"/>
+  <entry key="HISTORY_LINE_15" value="/exit"/>
+  <entry key="HISTORY_LINE_16" value="System.out.println((int)'1')"/>
+  <entry key="HISTORY_LINE_17" value="System.out.println((char)40)"/>
+  <entry key="HISTORY_LINE_18" value="/exit"/>
+  <entry key="HISTORY_LINE_19" value="$1= &quot;hello&quot;"/>
+  <entry key="HISTORY_LINE_20" value="String hello = &quot;hello&quot;"/>
+  <entry key="HISTORY_LINE_21" value="String anotherHello = &quot;hello&quot;"/>
+  <entry key="HISTORY_LINE_22" value="hello.length();"/>
+  <entry key="HISTORY_LINE_23" value="hello.concat(anotherHello)"/>
+  <entry key="HISTORY_LINE_24" value="hello.concat((&quot; &quot; + anotherHello))"/>
+  <entry key="HISTORY_LINE_25" value="hello.equals(anotherHello);"/>
+  <entry key="HISTORY_LINE_26" value="hello.contains(llo)"/>
+  <entry key="HISTORY_LINE_27" value="hello.contains(&quot;ello&quot;)"/>
+  <entry key="HISTORY_LINE_28" value="clear"/>
+  <entry key="HISTORY_LINE_29" value="/clear"/>
+  <entry key="HISTORY_LINE_30" value="/help"/>
+  <entry key="HISTORY_LINE_31" value="String lString = &quot;  htis    fa sfl   fjalskfj &quot;"/>
+  <entry key="HISTORY_LINE_32" value="lString.trim()"/>
+  <entry key="HISTORY_LINE_33" value="/exit"/>
+  <entry key="HISTORY_LINE_34" value="String sWelcome= &quot;Welcome to Java&quot;"/>
+  <entry key="HISTORY_LINE_35" value="sWelcome.indexOf(&quot;W&quot;)"/>
+  <entry key="HISTORY_LINE_36" value="sWelcome.indexOf(&quot;t&quot;)"/>
+  <entry key="HISTORY_LINE_37" value="String fullName=&quot;Thang Huynh&quot;"/>
+  <entry key="HISTORY_LINE_38" value="int k = fullName.indexOf(' ')"/>
+  <entry key="HISTORY_LINE_39" value="fullName.substring(0,k)"/>
+  <entry key="HISTORY_LINE_40" value="fullName.substring(k+1)"/>
+  <entry key="HISTORY_LINE_41" value="String s1 = &quot;Welcome to Java&quot;"/>
+  <entry key="HISTORY_LINE_42" value="s1.equalsIgnoreCase(&quot;java&quot;)"/>
+  <entry key="HISTORY_LINE_43" value="String set1 = &quot;1 2 3 \n&quot; + &quot; 4 5 6 &quot;"/>
+  <entry key="HISTORY_LINE_44" value="System.out.print(set1)"/>
+  <entry key="HISTORY_LINE_45" value="String sub=java.util.Scanner(System.in(set1)).nextLine();"/>
+  <entry key="HISTORY_LINE_46" value="String sub=(new java.util.Scanner(System.in(set1))).nextLine();"/>
+  <entry key="HISTORY_LINE_47" value="String sub=(new java.util.Scanner(set1)).nextLine();"/>
+  <entry key="HISTORY_LINE_48" value="/exit"/>
+  <entry key="HISTORY_LINE_49" value="System.out.prinln((char)4)"/>
+  <entry key="HISTORY_LINE_50" value="System.out.println((char)4)"/>
+  <entry key="HISTORY_LINE_51" value="/exit"/>
+  <entry key="HISTORY_LINE_52" value="&quot;Change the world&quot;.substring(1,5).contains(&quot;ang&quot;);"/>
+  <entry key="HISTORY_LINE_53" value="&quot;Change the world&quot;.substring(1,5).contains(&quot;anil&quot;);"/>
+  <entry key="HISTORY_LINE_54" value="clear"/>
+  <entry key="HISTORY_LINE_55" value="/exit"/>
+  <entry key="REPLAY_RESTORE" value="&quot;Change the world&quot;.substring(1,5).contains(&quot;ang&quot;);␞&quot;Change the world&quot;.substring(1,5).contains(&quot;anil&quot;);"/>
+</map>

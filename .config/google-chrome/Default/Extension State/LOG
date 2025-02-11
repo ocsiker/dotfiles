@@ -1,0 +1,15 @@
+2025/02/10-04:26:28.150 117a Reusing MANIFEST /home/ocsiker/.config/google-chrome/Default/Extension State/MANIFEST-000001
+2025/02/10-04:26:28.151 117a Recovering log #18622
+2025/02/10-04:26:28.157 117a Reusing old log /home/ocsiker/.config/google-chrome/Default/Extension State/018622.log 
+2025/02/10-04:26:31.555 1189 Level-0 table #18626: started
+2025/02/10-04:26:31.567 1189 Level-0 table #18626: 1323307 bytes OK
+2025/02/10-04:26:31.572 1189 Delete type=0 #18622
+2025/02/10-04:26:31.573 1189 Compacting 4@0 + 1@1 files
+2025/02/10-04:26:31.591 1189 Generated table #18627@0: 27 keys, 28066 bytes
+2025/02/10-04:26:31.591 1189 Compacted 4@0 + 1@1 files => 28066 bytes
+2025/02/10-04:26:31.595 1189 compacted to: files[ 0 1 0 0 0 0 0 ]
+2025/02/10-04:26:31.595 1189 Delete type=2 #18616
+2025/02/10-04:26:31.595 1189 Delete type=2 #18623
+2025/02/10-04:26:31.595 1189 Delete type=2 #18620
+2025/02/10-04:26:31.595 1189 Delete type=2 #18626
+2025/02/10-04:26:31.595 1189 Delete type=2 #18618

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/options.css">
+
+  <script src="/lib/autosize.min.js"></script>
+  <script src="/assets/javascripts/options.js"></script>
+</head>
+
+<body>
+  <h3>Categories</h3>
+
+  <div class="categories">
+
+    <div class="new category editable">
+      <div class="name column">
+        <input type="text" placeholder="Add a new category" required>
+      </div>
+      <div class="default column">
+        <label>
+          <input type="checkbox" tabindex="-1">
+          Default
+        </label>
+      </div>
+      <div class="keywords column">
+        <input type="text" placeholder="Key" required>
+      </div>
+      <div class="urls column">
+        <textarea placeholder="URLs (one per line), with %s in place of query" required></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="other-options">
+    <div class="option">
+      <label>
+        <input type="checkbox" class="use-google-autocomplete">
+        Use Google Autocomplete suggestions
+      </label>
+    </div>
+
+    <div class="option reset-to-defaults">
+      <button class="reset">Reset to default options</button>
+      <div class="confirm hidden">
+        <span class="message">All your configurations will be removed. Are you sure? </span> <button class="yes">Yes, reset to defaults</button> <button class="cancel">Cancel</button>
+      </div>
+    </div>
+
+    <div class="option rating-prompt hidden">
+      Enjoying this extension? Please show your support by
+      <a href="https://chrome.google.com/webstore/detail/instant-multi-search/aamgapdgopfdmokckpkfciiddpahbbcg/reviews" target="_blank">rating it on the Chrome Web Store</a>!
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="done">Done</button>
+  </div>
+
+  <template id="category-template">
+    <div class="category">
+      <div class="name column">
+        Movie Ratings & Reviews
+      </div>
+      <div class="default column">
+        <label>
+          <input type="checkbox" tabindex="-1">
+          Default
+        </label>
+      </div>
+      <div class="keywords column">
+        e,d
+      </div>
+      <div class="urls column">
+        http://www.google.com/search?sourceid=navclient&gfns=1&q=imdb %s
+        <br>
+        http://www.google.com/search?sourceid=navclient&gfns=1&q=rottentomatoes %s
+        <br>
+        http://www.google.fr/search?sourceid=navclient&gfns=1&q=allocine %s
+        <br>
+        http://www.google.com/search?sourceid=navclient&gfns=1&q=roger ebert %s
+        <br>
+      </div>
+      <div class="delete" title="Delete this category"></div>
+    </div>
+  </template>
+
+  <template id="editable-category-template">
+    <div class="category">
+      <div class="name column">
+        <input type="text" placeholder="Add a new category" required>
+      </div>
+      <div class="default column">
+        <label>
+          <input type="checkbox" tabindex="-1">
+          Default
+        </label>
+      </div>
+      <div class="keywords column">
+        <input type="text" placeholder="Key" required>
+      </div>
+      <div class="urls column">
+        <textarea placeholder="URLs (one per line), with %s in place of query" required></textarea>
+      </div>
+    </div>
+  </template>
+</body>
+
+</html>

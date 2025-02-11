@@ -1,0 +1,1 @@
+[{"action":{"redirect":{"regexSubstitution":"chrome-extension://gbohfhccchgngoapncnfnpldhlkojifo/home/index.html?url=\\0"},"type":"redirect"},"condition":{"isUrlFilterCaseSensitive":false,"regexFilter":"^file:.*\\.epub$","resourceTypes":["main_frame"]},"id":198964,"priority":1}]

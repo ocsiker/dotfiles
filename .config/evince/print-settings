@@ -1,0 +1,33 @@
+[Print Settings]
+evince-print-setting-page-size=false
+evince-print-setting-page-autorotate=true
+default-source=0
+media-type=PlainPaper
+cups-MediaType=PlainPaper
+cups-job-priority=80
+cups-number-up=1
+cups-CNSuperSmooth=False
+cover-before=none
+cups-CNTonerDensity=3
+cups-CNHalftone=pattern1
+evince-print-setting-page-scale=1
+cups-InputSlot=0
+print-at-time=
+cups-CNTonerSaving=False
+cover-after=none
+print-at=now
+printer=Print to File
+cups-job-sheets=none,none
+
+output-file-format=pdf
+
+[Page Setup]
+PPDName=A4
+DisplayName=A4
+Width=210
+Height=297
+MarginTop=6.3499999999999996
+MarginBottom=14.224
+MarginLeft=6.3499999999999996
+MarginRight=6.3499999999999996
+Orientation=portrait

@@ -1,0 +1,42 @@
+{
+  "categories": [
+    {
+      "name": "AI",
+      "keywords": ["ai"],
+      "urls": [
+        "https://chatgpt.com/?q=%s",
+        "https://www.perplexity.ai/search?q=%s"
+      ]
+    },
+    {
+      "name": "Dictionaries",
+      "keywords": ["d"],
+      "urls": [
+        "http://dictionary.reference.com/browse/%s?r=75&src=ref&ch=dic",
+        "http://www.collinsdictionary.com/dictionary/english/%s",
+        "https://www.ahdictionary.com/word/search.html?q=%s"
+      ]
+    },
+    {
+      "name": "Movie Reviews",
+      "defaultCategory": true,
+      "keywords": ["m"],
+      "urls": [
+        "[Feeling Lucky] imdb %s",
+        "[Feeling Lucky] rottentomatoes %s",
+        "[Feeling Lucky] roger ebert %s"
+      ]
+    },
+    {
+      "name": "Shopping",
+      "keywords": ["s"],
+      "urls": [
+        "https://www.amazon.com/s?k=%s",
+        "https://www.walmart.com/search?q=%s",
+        "http://www.ebay.com/sch/i.html?_nkw=%s"
+      ]
+    }
+  ],
+
+  "useGoogleAutocomplete": true
+}

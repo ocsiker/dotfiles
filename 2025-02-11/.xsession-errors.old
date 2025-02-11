@@ -1,0 +1,96 @@
+dbus-update-activation-environment: setting DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+dbus-update-activation-environment: setting DISPLAY=:0
+dbus-update-activation-environment: setting XAUTHORITY=/home/ocsiker/.Xauthority
+dbus-update-activation-environment: setting XDG_CURRENT_DESKTOP=i3
+/etc/X11/Xsession.d/30x11-common_xresources: line 16: has_option: command not found
+dbus-update-activation-environment: setting GTK_MODULES=gail:atk-bridge
+dbus-update-activation-environment: setting QT_ACCESSIBILITY=1
+/etc/X11/Xsession.d/90x11-common_ssh-agent: line 9: has_option: command not found
+i3status: trying to auto-detect output_format setting
+i3status: auto-detection: parent process is "sh", looking at its parent
+i3status: auto-detected "i3bar"
+dbus-daemon[2080]: Activating service name='org.a11y.atspi.Registry' requested by ':1.3' (uid=1000 pid=2027 comm="/usr/libexec/ibus-x11 --kill-daemon" label="unconfined")
+dbus-daemon[2080]: Successfully activated service 'org.a11y.atspi.Registry'
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+[../i3bar/src/xcb.c:876] ERROR: Error getting _XEMBED_INFO property: error_code 3
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 146
+Xlib: ignoring invalid extension event 146
+Refusing to render service to dead parents.
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+
+(google-chrome-stable:2655): IBUS-WARNING **: 01:11:16.953: google-chrome-stable has no capability of surrounding-text feature
+Created TensorFlow Lite XNNPACK delegate for CPU.
+Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#-1 is a dynamic-sized tensor).
+[2655:2682:0211/011118.653224:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+[2655:2682:0211/011140.689853:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+Xlib: ignoring invalid extension event 161
+[2655:2682:0211/011226.091890:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+[2655:2682:0211/011403.333222:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+i3status: exiting due to signal.

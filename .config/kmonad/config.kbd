@@ -1,0 +1,67 @@
+(defcfg
+  input  (device-file "/dev/input/by-path/pci-0000:00:14.0-usb-0:6:1.0-event-kbd")
+  output (uinput-sink "KMonad kbd")
+)
+
+
+(defsrc
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12            prnt    slck    pause
+  grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc      ins     home    pgup
+  tab     q    w    e    r    t    y    u    i    o    p    [    ]    \         del     end     pgdn
+  caps    a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft      z    x    c    v    b    n    m    ,    .    /    rsft                      up
+  lctl    lmet lalt           spc            ralt rmet cmp  rctl                left    down    right
+)
+
+(defalias
+ mv (layer-toggle vim) ;; Bind mv to a button (rsft) that swithes to a layer vim 
+ ;; fre (layer-toggle efrench))
+ ;; fr (layer-toggle french) ;; Bind fr to a button (f) that switches to a layer french
+ ;; es  (layer-toggle eS)
+)
+
+(deflayer main
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12            prnt    slck    pause
+  grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc      ins     home    pgup
+  tab     q    w    e    r    t    y    u    i    o    p    [    ]    \         del     end     pgdn
+  caps    a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft      z    x    c    v    b    n    m    ,    .    /    @mv                      up
+  lctl    lmet lalt           spc            ralt rmet cmp  rctl                left    down    right
+)
+
+
+(deflayer vim
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    end    _    _    _    home    _    _    _    _    _    _     _    _    _
+  _    _    _    _    _    _    left    down    up    right    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _                    _
+  _    _    _              _              _    _    _    _               _    _    _
+)
+
+;; (deflayer efrench
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    ê    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    é    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _                    _
+;;   _    _    _              _              _    _    _    _               _    _    _
+;; )
+
+;; (deflayer eS
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    ê    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _                    _
+;;   _    _    _              _              _    _    _    _               _    _    _
+;; )
+
+;; (deflayer name
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _    _                    _
+;;   _    _    _              _              _    _    _    _               _    _    _
+;; )

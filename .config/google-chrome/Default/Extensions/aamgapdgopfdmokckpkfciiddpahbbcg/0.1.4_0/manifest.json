@@ -1,0 +1,28 @@
+{
+   "action": {
+      "default_popup": "pages/options.html"
+   },
+   "background": {
+      "service_worker": "src/background.js"
+   },
+   "description": "Search on multiple websites, instantly. An ideal companion for power searchers.",
+   "differential_fingerprint": "1.493e25d008cccc259f0b9d69843c76805fb343d24ae2170eb32620d719a00e31",
+   "host_permissions": [ "http://suggestqueries.google.com/" ],
+   "icons": {
+      "128": "assets/images/icon128.png",
+      "16": "assets/images/icon16.png",
+      "48": "assets/images/icon48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApIq1sWe1QahN3Gf4CCGG+lORAr5DP7qN16qpPzxPB/ASc+gbfTJ9aDiJlu624pHsIywYmaDemNhtgWk1+qo/oZzruVOX0QvMYAFpWmPvZZW02QB5evoecE8C/rMmuVCPQC7euOt7TXrIt2AlzcKIZ359/UpiG3c5bJMQqUGqlsn/7Bf3isg/YXlIHdO88VlWu7rPHa2KADMg/wCnlvK9j6ZUOseFzmxm93UnGt3Ze6203DsGK7PJc4XWy6cGwXauL1b6vr0NKnHnbU88FucnhXMqbfF0LWtPLaPbKxvLk9J18KkE2qqEwrxRZ9qWTjXEQFoLkuke5urx4i6mrx3eQQIDAQAB",
+   "manifest_version": 3,
+   "name": "Instant Multi Search",
+   "omnibox": {
+      "keyword": "m"
+   },
+   "options_ui": {
+      "page": "pages/options.html"
+   },
+   "permissions": [ "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.1.4"
+}

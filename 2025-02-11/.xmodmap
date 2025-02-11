@@ -1,0 +1,61 @@
+! 62 is Shift_R
+! keycode 62 = Mode_switch  
+! 37 is control
+! keycode 37 = Mode_switch  
+! 50 is Shift_L
+!keycode 50 = Mode_switch  
+! 64 Alt_L
+!keycode 64 = Mode_switch  
+! 23 is tab
+! keycode 23 = Mode_switch  
+! 151 is Fn
+! keycode 62 = Mode_switch
+keycode 62 = Mode_switch
+keysym h = h H Left Left  
+keysym l = l L  Right Right
+keysym k = k K  Up    Up   
+keysym j = j J  Down  Down 
+!setup key down and up to 'u' and 'e'
+!u is 30 
+!e is 26
+keysym e = e E  End  
+keysym u = u U  Home    
+!
+!
+!keycode 54 = c C Escape
+!keycode 58 = m M Return
+!keycode 40 = d D Delete
+! keycode 41 = f F BackSpace
+!keycode 42 = g G Pointer_Button1
+!
+!x set to backsapce
+! keysym x = x X  BackSpace   
+
+!for type french
+keysym q = q Q acircumflex Acircumflex
+!keysym e = e E eacute Eacute
+keysym r = r R egrave Egrave
+keysym y = y Y ucircumflex Ucircumflex
+keysym i = i I icircumflex Icircumflex
+keysym o = o O ocircumflex Ocircumflex
+keysym a = a A agrave Agrave
+keysym d = d D ediaeresis Ediaeresis
+keysym f = f F ecircumflex Ecircumflex
+!keysym h = h H ugrave Ugrave
+keysym p = p P udiaeresis Udiaeresis
+!keysym k = k K idiaeresis Idiaeresis
+keysym c = c C ccedilla Ccedilla
+keysym z = z Z guillemotleft
+keysym x = x X guillemotright
+keysym period = period greater U2026
+
+keysym 5 = 5 percent EuroSign
+keysym 6 = 6 asciicircum dead_circumflex
+keysym 7 = 7 ampersand dead_caron dead_breve
+keysym 0 = 0 parenright dead_abovering
+
+keysym minus = minus underscore dead_macron U2014
+keysym semicolon = semicolon colon dead_diaeresis
+keysym apostrophe = apostrophe quotedbl dead_acute
+keysym grave = grave asciitilde dead_grave dead_tilde
+keysym comma = comma less dead_cedilla
