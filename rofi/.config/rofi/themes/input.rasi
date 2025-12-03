@@ -1,0 +1,57 @@
+configuration {
+    font: "Noto Sans 14";
+    show-icons: false;
+}
+
+/* source mau https://www.color-hex.com/color-names.html */
+
+* {
+    background: #b0bf1a ; /* Nền Acid Green*/
+    foreground: #8b8378; /* Chữ AntiqueWhite4 */
+    accent:#8b8378 ;    /* Chữ AntiqueWhite4  */
+    border-color: #b0bf1a; /* Đảm bảo border cùng màu nền */
+}
+
+window {
+    width: 600px;
+    location: center;
+    background-color: @background;
+    border: 0px; /* Loại bỏ viền nếu có */
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    background-color: @background;
+    text-color: @foreground;
+    padding: 10px;
+    border: 0px;
+}
+
+prompt {
+    text-color: @accent;
+    background-color: @background; /* Đảm bảo prompt cùng màu nền */
+}
+
+entry {
+    text-color: @foreground;
+    background-color: @background; /* Đảm bảo ô nhập liệu cùng màu nền */
+    placeholder: "Nhập dữ liệu...";
+    placeholder-color: @accent;
+    border: 0px; /* Loại bỏ viền ô nhập liệu */
+}
+
+listview {
+    lines: 0;
+    background-color: @background;
+    border: 0px;
+}
+
+element-text {
+    background-color: @background; /* Đảm bảo text không có nền riêng */
+    text-color: @foreground;
+}
+
+element {
+    background-color: @background;
+    border: 0px;
+}
