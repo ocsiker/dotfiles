@@ -46,9 +46,17 @@ echo -e "${GREEN}[3/7] Cài đặt ứng dụng từ pkglist.txt...${NC}"
 
 # Đảm bảo cài Neovim (nếu chưa có trong list) và LightDM cơ bản
 sudo apt install -y lightdm lightdm-gtk-greeter lightdm-settings lightdm-autologin-greeter \
-	libx11-dev libxi-dev libxinerama-dev libxft-dev libwayland-dev libxkbcommon-dev \
-       	libcairo2-dev libxkbcommon-dev libwayland-dev
-
+	libxi-dev \
+	libxinerama-dev \
+	libxft-dev \
+	libxfixes-dev \
+	libxtst-dev \
+	libx11-dev \
+	libcairo2-dev \
+	libxkbcommon-dev \
+	libwayland-dev	\
+	scdoc	\
+	libspnav-dev
 if [ -f "system/lightdm.config" ]; then
     echo "    - Restore cấu hình lightdm cho ocsiker..."
     sudo cp system/lightdm.conf /etc/lightdm/
@@ -103,6 +111,7 @@ if ! command -v warpd &> /dev/null; then
     #
     # Vào thư mục và build
     pushd /tmp/warpd > /dev/null
+    make clean
     make
     # Cài đặt vào /usr/local/bin
     sudo make install
