@@ -238,6 +238,9 @@ bindsym $mod+Shift+a exec --no-startup-id ~/bin/reminder.sh add
 
 # Chạy script ngầm khi khởi động
 exec_always --no-startup-id ~/bin/reminder.sh
+#
+# Chạy warpd ngầm khi khởi động
+exec_always --no-startup-id warpd
 
 # di chuyen cua so vao khong gian scratchpad
 bindsym $mod+Shift+minus move scratchpad

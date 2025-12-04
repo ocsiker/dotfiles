@@ -22,20 +22,20 @@ echo -e "${GREEN}[2/7] Thêm nguồn phần mềm (Repositories)...${NC}"
 
 # 2.1 Vivaldi Browser
 if [ ! -f "/etc/apt/sources.list.d/vivaldi.list" ]; then
-    echo "    - Thêm Vivaldi Repo..."
-    sudo mkdir -p /etc/apt/keyrings
-    wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/vivaldi-browser.gpg --yes
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/vivaldi-browser.gpg] https://repo.vivaldi.com/archive/deb/ stable main" | sudo tee /etc/apt/sources.list.d/vivaldi.list > /dev/null
+	echo "    - Thêm Vivaldi Repo..."
+	sudo mkdir -p /etc/apt/keyrings
+	wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/vivaldi-browser.gpg --yes
+	echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/vivaldi-browser.gpg] https://repo.vivaldi.com/archive/deb/ stable main" | sudo tee /etc/apt/sources.list.d/vivaldi.list >/dev/null
 fi
 
 # 2.2 Docker (Dùng script tiện ích chính chủ)
-if ! command -v docker &> /dev/null; then
-    echo "    - Cài đặt Docker Engine..."
-    curl -fsSL https://get.docker.com | sh
-    # Thêm user vào group docker (dùng docker không cần sudo)
-    sudo usermod -aG docker $USER
+if ! command -v docker &>/dev/null; then
+	echo "    - Cài đặt Docker Engine..."
+	curl -fsSL https://get.docker.com | sh
+	# Thêm user vào group docker (dùng docker không cần sudo)
+	sudo usermod -aG docker $USER
 else
-    echo "    - Docker đã được cài đặt."
+	echo "    - Docker đã được cài đặt."
 fi
 
 # Cập nhật lại apt sau khi thêm repo
@@ -54,26 +54,26 @@ sudo apt install -y lightdm lightdm-gtk-greeter lightdm-settings lightdm-autolog
 	libx11-dev \
 	libcairo2-dev \
 	libxkbcommon-dev \
-	libwayland-dev	\
-	scdoc	\
+	libwayland-dev \
+	scdoc \
 	libspnav-dev
 if [ -f "system/lightdm.config" ]; then
-    echo "    - Restore cấu hình lightdm cho ocsiker..."
-    sudo cp system/lightdm.conf /etc/lightdm/
+	echo "    - Restore cấu hình lightdm cho ocsiker..."
+	sudo cp system/lightdm.conf /etc/lightdm/
 fi
 
 if [ -f "pkglist.txt" ]; then
-    # Lọc bỏ các gói hệ thống cũ không còn tồn tại hoặc gây lỗi
-    # xargs cài song song giúp nhanh hơn
-    grep -vE '^\s*#|^\s*$' pkglist.txt | xargs sudo apt install -y || echo -e "${RED}Có một số gói lỗi, nhưng script vẫn tiếp tục...${NC}"
+	# Lọc bỏ các gói hệ thống cũ không còn tồn tại hoặc gây lỗi
+	# xargs cài song song giúp nhanh hơn
+	grep -vE '^\s*#|^\s*$' pkglist.txt | xargs sudo apt install -y || echo -e "${RED}Có một số gói lỗi, nhưng script vẫn tiếp tục...${NC}"
 else
-    echo "Warning: Không tìm thấy pkglist.txt"
+	echo "Warning: Không tìm thấy pkglist.txt"
 fi
 
 # Fix lỗi codec video cho Vivaldi
-if command -v /opt/vivaldi/update-ffmpeg &> /dev/null; then
-    echo "    - Fix codec Vivaldi..."
-    sudo /opt/vivaldi/update-ffmpeg
+if command -v /opt/vivaldi/update-ffmpeg &>/dev/null; then
+	echo "    - Fix codec Vivaldi..."
+	sudo /opt/vivaldi/update-ffmpeg
 fi
 
 # --- PHẦN 4: CÀI ĐẶT APP NGOÀI (SQLcl, FZF) ---
@@ -81,44 +81,44 @@ echo -e "${GREEN}[4/7] Cài đặt ứng dụng thủ công...${NC}"
 
 # 4.1 SQLcl (Từ file zip trong repo)
 if [ ! -d "/opt/sqlcl" ] && [ -f "sqlcl-latest.zip" ]; then
-    echo "    - Cài đặt SQLcl..."
-    sudo unzip -q sqlcl-latest.zip -d /opt/
-    sudo ln -sf /opt/sqlcl/bin/sql /usr/local/bin/sql
-    echo "    - Xong SQLcl."
+	echo "    - Cài đặt SQLcl..."
+	sudo unzip -q sqlcl-latest.zip -d /opt/
+	sudo ln -sf /opt/sqlcl/bin/sql /usr/local/bin/sql
+	echo "    - Xong SQLcl."
 elif [ -d "/opt/sqlcl" ]; then
-    echo "    - SQLcl đã cài đặt."
+	echo "    - SQLcl đã cài đặt."
 else
-    echo "    - Không thấy file sqlcl-latest.zip, bỏ qua."
+	echo "    - Không thấy file sqlcl-latest.zip, bỏ qua."
 fi
 
 # 4.2 FZF (Cài từ Git để có keybindings Ctrl+R, Ctrl+T)
 if [ ! -d "$HOME/.fzf" ]; then
-    echo "    - Cài đặt FZF (Git version)..."
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --all --no-update-rc
-    # (--all: bật keybindings, --no-update-rc: để ta tự config trong stow bashrc)
+	echo "    - Cài đặt FZF (Git version)..."
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install --all --no-update-rc
+	# (--all: bật keybindings, --no-update-rc: để ta tự config trong stow bashrc)
 else
-    echo "    - FZF đã cài đặt."
+	echo "    - FZF đã cài đặt."
 fi
 # 4.3 CÀI ĐẶT WARPD (BUILD FROM SOURCE) ---
 echo -e "${GREEN}[5/8] Cài đặt Warpd (Mouse Control)...${NC}"
 
-if ! command -v warpd &> /dev/null; then
-    echo "    - Đang tải và biên dịch Warpd..."
-    # Clone vào thư mục tạm /tmp để không làm rác máy
-    rm -rf /tmp/warpd
-    git clone https://github.com/rvaiya/warpd.git /tmp/warpd
-    #
-    # Vào thư mục và build
-    pushd /tmp/warpd > /dev/null
-    make clean
-    make
-    # Cài đặt vào /usr/local/bin
-    sudo make install
-    popd > /dev/null
-    echo "    - Đã cài đặt Warpd thành công."
+if ! command -v warpd &>/dev/null; then
+	echo "    - Đang tải và biên dịch Warpd..."
+	# Clone vào thư mục tạm /tmp để không làm rác máy
+	rm -rf /tmp/warpd
+	git clone https://github.com/rvaiya/warpd.git /tmp/warpd
+	#
+	# Vào thư mục và build
+	pushd /tmp/warpd >/dev/null
+	make clean
+	make
+	# Cài đặt vào /usr/local/bin
+	sudo make install
+	popd >/dev/null
+	echo "    - Đã cài đặt Warpd thành công."
 else
-    echo "    - Warpd đã được cài đặt."
+	echo "    - Warpd đã được cài đặt."
 fi
 
 # --- PHẦN 5: CẤU HÌNH HỆ THỐNG (/etc) ---
@@ -126,9 +126,9 @@ echo -e "${GREEN}[5/7] Cấu hình hệ thống...${NC}"
 
 # 5.1 Keyboard (/etc/default/keyboard)
 if [ -f "system/keyboard" ]; then
-    echo "    - Restore cấu hình bàn phím..."
-    sudo cp system/keyboard /etc/default/keyboard
-    sudo udevadm trigger --subsystem-match=input --action=change
+	echo "    - Restore cấu hình bàn phím..."
+	sudo cp system/keyboard /etc/default/keyboard
+	sudo udevadm trigger --subsystem-match=input --action=change
 fi
 
 # 5.2 LightDM (Enable service)
