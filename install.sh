@@ -31,6 +31,9 @@ if [ -f "$HOME/dotfiles/vivaldi.sh" ]; then
 else
 	echo "cannot run file  $HOME/dotfiles/vivaldi.sh"
 fi
+#2.1.1 Don dep keyring cho vivaldi
+rm $HOME/.local/share/keyrings/*
+
 # 2.2 Docker (Dùng script tiện ích chính chủ)
 if ! command -v docker &>/dev/null; then
 	echo "    - Cài đặt Docker Engine..."
