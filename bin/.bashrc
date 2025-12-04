@@ -95,3 +95,26 @@ esac
 
 # show title for the terminal
 PROMPT_COMMAND='echo -ne "\033]0;$(basename ${PWD})\007"'
+# Không phân biệt hoa thường khi tab completion
+bind "set completion-ignore-case on"
+
+# Hiển thị gợi ý ngay khi có nhiều lựa chọn (không cần tab 2 lần)
+bind "set show-all-if-ambiguous on"
+
+# Tự động thêm / vào cuối thư mục
+bind "set mark-directories on"
+bind "set mark-symlinked-directories on"
+
+# Hoàn thành từng phần (như zsh)
+bind "set menu-complete-display-prefix on"
+
+# Hiển thị màu sắc cho các gợi ý
+bind "set colored-stats on"
+
+# Hiển thị loại file (*, /, @, =)
+bind "set visible-stats on"
+
+#bind phim tat de vao trong interactive cuar cheatsh
+# Nhấn Ctrl + x rồi nhấn c để vào cheat.sh
+# (Bash hạn chế phím tắt đơn hơn Zsh một chút để tránh xung đột)
+bind '"\C-xc":"cht --shell\n"'
