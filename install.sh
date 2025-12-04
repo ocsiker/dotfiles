@@ -21,13 +21,16 @@ sudo apt install -y git stow curl unzip wget apt-transport-https software-proper
 echo -e "${GREEN}[2/7] Thêm nguồn phần mềm (Repositories)...${NC}"
 
 # 2.1 Vivaldi Browser
-if [ ! -f "/etc/apt/sources.list.d/vivaldi.list" ]; then
-    echo "    - Thêm Vivaldi Repo..."
-    sudo mkdir -p /etc/apt/keyrings
-    wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/vivaldi-browser.gpg --yes
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/vivaldi-browser.gpg] https://repo.vivaldi.com/archive/deb/ stable main" | sudo tee /etc/apt/sources.list.d/vivaldi.list > /dev/null
-fi
-
+if [ -f "$HOME/dotfiles/vivaldi.sh" ]; then 
+	if dpkg -l | grep -q vivaldi-stable; then
+        echo "Vivaldi đã được cài đặt rồi, bỏ qua."
+    else
+        echo "install vivaldi browser"
+        bash $HOME/dotfiles/vivaldi.sh
+    fi
+else 
+	echo "cannot run file  $HOME/dotfiles/vivaldi.sh"
+fi 
 # 2.2 Docker (Dùng script tiện ích chính chủ)
 if ! command -v docker &> /dev/null; then
     echo "    - Cài đặt Docker Engine..."
@@ -145,10 +148,17 @@ echo -e "${GREEN}[6/7] Stow Dotfiles...${NC}"
 #[ -f "$HOME/.profile" ] && [ ! -L "$HOME/.profile" ] && mv "$HOME/.profile" "$HOME/.profile.bak"
 #[ -f "$HOME/.gitconfig" ] && [ ! -L "$HOME/.gitconfig" ] && mv "$HOME/.gitconfig" "$HOME/.gitconfig.bak"
 
+#
 # 6.2 Chạy Stow
 cd $HOME/dotfiles/home
-# Stow tất cả các folder con vào Home
-stow . --target=$HOME
+if [ -f "$HOME/dotfiles/home/swot.sh" ]; then 
+	bash $HOME/dotfiles/home/swot.sh
+else
+	echo " not found $HOME/dotfiles/home/swot.sh"
+fi
+
+echo "--- Hoàn tất! ---"
+
 echo "    - Đã link xong: i3, rofi, polybar, bash, git, nvim, mouseless..."
 
 # --- PHẦN 7: DỌN DẸP ---
