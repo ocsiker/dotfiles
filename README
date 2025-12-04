@@ -1,1 +1,29 @@
 this is for new set up pc mobile
+
+~/dotfiles/
+├── install.sh                  # File script bên dưới
+├── pkglist.txt                 # File xuất từ lệnh apt-mark showmanual
+├── sqlcl-latest.zip            # File zip của SQLcl (tải từ Oracle)
+├── system/                     # Config hệ thống
+│   └── keyboard                # File /etc/default/keyboard của bạn
+└── home/                       # Config người dùng (để Stow)
+    ├── bash/
+    │   ├── .bashrc
+    │   ├── .bash_aliases
+    │   └── .bash_profile
+    ├── git/
+    │   ├── .gitconfig
+    │   └── .gitignore_global
+    ├── i3/
+    │   └── .config/i3/config
+    ├── rofi/
+    │   └── .config/rofi/...
+    ├── polybar/
+    │   └── .config/polybar/...
+    ├── mouseless/
+    │   └── .config/mouseless/config.yaml
+    ├── nvim/
+    │   └── .config/nvim/...
+    └── bin/                    # Script cá nhân
+        └── .local/bin/         # (Lưu ý cấu trúc này để stow vào đúng ~/.local/bin)
+            └── cac-script-cua-ban
