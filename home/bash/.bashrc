@@ -60,7 +60,11 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
-
+#
+# Kích hoạt gợi ý Git thủ công
+if [ -f ~/.git-completion.bash ]; then
+	. ~/.git-completion.bash
+fi
 # --- 3. CẤU HÌNH GIAO DIỆN (PROMPT) ---
 parse_git_branch() {
 	git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
