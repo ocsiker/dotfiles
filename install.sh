@@ -180,9 +180,17 @@ else
 	echo " not found $HOME/dotfiles/home/stow.sh"
 fi
 
+# 6.3 Chạy blesh
+echo -e "${GREEN}[6/7] Blesh Dotfiles...${NC}"
+if [ -f "$HOME/dotfiles/home/blesh.sh" ]; then
+	bash $HOME/dotfiles/home/blesh.sh
+else
+	echo " not found $HOME/dotfiles/home/blesh.sh"
+
+fi
 echo "--- Hoàn tất! ---"
 
-echo "    - Đã link xong: i3, rofi, polybar, bash, git, nvim, mouseless..."
+echo "    - Đã link xong: i3, rofi, polybar, bash, git, nvim, blesh..."
 
 # --- PHẦN 7: DỌN DẸP ---
 echo -e "${GREEN}[7/7] Dọn dẹp hệ thống...${NC}"
