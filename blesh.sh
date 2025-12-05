@@ -49,6 +49,8 @@ ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
 
 # --- CẤU HÌNH AUTO-SUGGESTION (GỢI Ý MỜ) ---
+# Tích hợp Bash Completion
+ble-import -d integration/bash-completion-r1
 # (Mặc định đã bật, nhưng đây là các tùy chọn nếu bạn muốn chỉnh màu)
 # ble-face auto_complete=fg=238,bg=terminal (Màu xám)
 
