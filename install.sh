@@ -31,8 +31,6 @@ if [ -f "$HOME/dotfiles/vivaldi.sh" ]; then
 else
 	echo "cannot run file  $HOME/dotfiles/vivaldi.sh"
 fi
-#2.1.1 Don dep keyring cho vivaldi
-rm $HOME/.local/share/keyrings/*
 
 # 2.2 Docker (Dùng script tiện ích chính chủ)
 if ! command -v docker &>/dev/null; then
@@ -154,10 +152,10 @@ echo -e "${GREEN}[6/7] Stow Dotfiles...${NC}"
 #
 # 6.2 Chạy Stow
 cd $HOME/dotfiles/home
-if [ -f "$HOME/dotfiles/home/swot.sh" ]; then
-	bash $HOME/dotfiles/home/swot.sh
+if [ -f "$HOME/dotfiles/home/stow.sh" ]; then
+	bash $HOME/dotfiles/home/stow.sh
 else
-	echo " not found $HOME/dotfiles/home/swot.sh"
+	echo " not found $HOME/dotfiles/home/stow.sh"
 fi
 
 echo "--- Hoàn tất! ---"
