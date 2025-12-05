@@ -15,6 +15,7 @@ PACKAGES=(
     "bash"
     "bin"
     "alacritty"
+    "i3"
     # "scripts"
 )
 
