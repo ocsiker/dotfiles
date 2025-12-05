@@ -43,7 +43,7 @@ l = right
 b = C-left
 w = C-right
 u = home
-i = end
+e = end
 backspace = delete
 x = C-backspace
 EOF
