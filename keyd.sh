@@ -38,6 +38,12 @@ h = left
 j = down
 k = up
 l = right
+#
+# --- Cuộn chuột (Mouse Wheel) ---
+# Giữ Caps + y: Cuộn lên (Scroll Up)
+y = scrollup
+# Giữ Caps + n: Cuộn xuống (Scroll Down)
+n = scrolldown
 
 # Tiện ích bổ sung cho nav layer
 b = C-left
