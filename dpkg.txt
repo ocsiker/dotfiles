@@ -46,6 +46,7 @@ i3-wm
 i3lock
 i3status
 ibus
+ibus-bamboo
 libc-bin
 lightdm
 lightdm-autologin-greeter
