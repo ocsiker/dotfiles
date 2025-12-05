@@ -1,4 +1,4 @@
-alias vim='vim'
+alias vim='nvim'
 alias pwo='poweroff'
 alias python=python3
 alias rsync='rsync --stats --progress'

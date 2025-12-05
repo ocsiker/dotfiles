@@ -40,18 +40,15 @@ esac
 
 #run file from directory
 
-if [ -f ~/bin/.bash_exports ]; then
-	. ~/bin/.bash_exports
+if [ -f ~/.bash_exports ]; then
+	. ~/.bash_exports
 fi
 
-if [ -f ~/bin/.bash_aliases ]; then
-	. ~/bin/.bash_aliases
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
 fi
 
-if [ -f ~/bin/fzf.bash ]; then
-	. ~/bin/fzf.bash
-fi
-#Fzf complete directory
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -f ~/bin/classPath.sh ]; then
 	. ~/bin/classPath.sh
@@ -119,4 +116,3 @@ bind "set visible-stats on"
 # (Bash hạn chế phím tắt đơn hơn Zsh một chút để tránh xung đột)
 bind '"\C-xc":"cht --shell\n"'
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
