@@ -15,11 +15,13 @@ PACKAGES=(
     "bash"
     "bin"
     "alacritty"
+    "i3"
     # "scripts"
 )
 
 # --- XỬ LÝ ---
-
+# --- xoa cac file bash*~ ---
+rm -rf $HOME/.bash*
 echo "Đang tiến hành stow các file từ $DOTFILES_DIR tới $TARGET_DIR..."
 
 for package in "${PACKAGES[@]}"; do
