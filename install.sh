@@ -42,6 +42,18 @@ else
 	echo "    - Docker đã được cài đặt."
 fi
 
+# 2.3 eza
+if [ -f "$HOME/dotfiles/eza.sh" ]; then
+	if dpkg -l | grep -q eza; then
+		echo "eza đã được cài đặt rồi, bỏ qua."
+	else
+		echo "install eza"
+		bash $HOME/dotfiles/eza.sh
+	fi
+else
+	echo "cannot run file  $HOME/dotfiles/eza.sh"
+fi
+
 # Cập nhật lại apt sau khi thêm repo
 sudo apt update
 
