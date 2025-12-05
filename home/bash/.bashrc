@@ -50,6 +50,10 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+if [ -f ~/bin/fzf.bash ]; then
+	. ~/bin/fzf.bash
+fi
+
 if [ -f ~/bin/classPath.sh ]; then
 	. ~/bin/classPath.sh
 fi
@@ -115,4 +119,3 @@ bind "set visible-stats on"
 # Nhấn Ctrl + x rồi nhấn c để vào cheat.sh
 # (Bash hạn chế phím tắt đơn hơn Zsh một chút để tránh xung đột)
 bind '"\C-xc":"cht --shell\n"'
-
