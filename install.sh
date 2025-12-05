@@ -138,7 +138,13 @@ if [ -f "system/keyboard" ]; then
 	sudo udevadm trigger --subsystem-match=input --action=change
 fi
 
-# 5.2 LightDM (Enable service)
+# 5.2 LightDM config
+if [ -f "system/lightdm.conf" ]; then
+	echo "    - Restore cấu hình bàn phím..."
+	sudo cp system/lightdm.conf /etc/lightdm/
+fi
+
+# 5.3 LightDM (Enable service)
 # Không dùng Slick Greeter, dùng mặc định GTK
 sudo systemctl enable lightdm
 
