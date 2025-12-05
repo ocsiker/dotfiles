@@ -1,1 +1,6 @@
 this is for new set up pc mobile
+clone to home directory
+cd dotfiles
+chmox +x install.sh vivaldi.sh keyd.sh
+bash install.sh
+done
