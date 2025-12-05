@@ -54,6 +54,29 @@ else
 	echo "cannot run file  $HOME/dotfiles/eza.sh"
 fi
 
+
+# 2.4 getnf
+if [ -f "$HOME/dotfiles/getnf.sh" ]; then
+	if dpkg -l | grep -q getnf; then
+		echo "getnf đã được cài đặt rồi, bỏ qua."
+	else
+		echo "install getnf"
+		bash $HOME/dotfiles/getnf.sh
+	fi
+else
+	echo "cannot run file  $HOME/dotfiles/getnf.sh"
+fi
+
+# 2.4 git_completion
+if [ -f "$HOME/dotfiles/git_completion.sh" ]; then
+	if dpkg -l | grep -q ; then
+		echo "git_completion đã được cài đặt rồi, bỏ qua."
+	else
+		echo "install git_completion"
+		bash $HOME/dotfiles/git_completion.sh
+	fi
+else
+	echo "cannot run file  $HOME/dotfiles/git_completion.sh"
 # Cập nhật lại apt sau khi thêm repo
 sudo apt update
 
@@ -180,9 +203,23 @@ else
 	echo " not found $HOME/dotfiles/home/stow.sh"
 fi
 
+# 6.3 Chạy blesh
+echo -e "${GREEN}[6/7] Blesh Dotfiles...${NC}"
+if [ -f "$HOME/dotfiles/blesh.sh" ]; then
+	bash $HOME/dotfiles/blesh.sh
+else
+	echo " not found $HOME/dotfiles/blesh.sh"
+
+# 6.3 Chạy ibus-bammbo
+echo -e "${GREEN}[6/7] ibus-bammbo Dotfiles...${NC}"
+if [ -f "$HOME/dotfiles/ibusbamboo.sh" ]; then
+	bash $HOME/dotfiles/ibusbammbo.sh
+else
+	echo " not found $HOME/dotfiles/ibusbammbo.sh"
+fi
 echo "--- Hoàn tất! ---"
 
-echo "    - Đã link xong: i3, rofi, polybar, bash, git, nvim, mouseless..."
+echo "    - Đã link xong: i3, rofi, polybar, bash, git, nvim, blesh..."
 
 # --- PHẦN 7: DỌN DẸP ---
 echo -e "${GREEN}[7/7] Dọn dẹp hệ thống...${NC}"
