@@ -123,6 +123,10 @@ if ! command -v warpd &>/dev/null; then
 else
 	echo "    - Warpd đã được cài đặt."
 fi
+# 4.4 CÀI ĐẶT Keyd (BUILD FROM SOURCE) ---
+if [ -f "keyd.sh" ]; then
+	bash keyd.sh
+fi
 
 # --- PHẦN 5: CẤU HÌNH HỆ THỐNG (/etc) ---
 echo -e "${GREEN}[5/7] Cấu hình hệ thống...${NC}"
