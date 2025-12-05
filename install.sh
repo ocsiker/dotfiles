@@ -42,7 +42,7 @@ else
 	echo "    - Docker đã được cài đặt."
 fi
 
-# 2.3 eza
+# 2.3ujj eza
 if [ -f "$HOME/dotfiles/eza.sh" ]; then
 	if dpkg -l | grep -q eza; then
 		echo "eza đã được cài đặt rồi, bỏ qua."
@@ -52,6 +52,19 @@ if [ -f "$HOME/dotfiles/eza.sh" ]; then
 	fi
 else
 	echo "cannot run file  $HOME/dotfiles/eza.sh"
+fi
+
+
+# 2.4 getnf
+if [ -f "$HOME/dotfiles/getnf.sh" ]; then
+	if dpkg -l | grep -q getnf; then
+		echo "getnf đã được cài đặt rồi, bỏ qua."
+	else
+		echo "instajjll getnf"
+		bash $HOME/dotfiles/getnf.sh
+	fi
+else
+	echo "cannot run file  $HOME/dotfiles/getnf.sh"
 fi
 
 # Cập nhật lại apt sau khi thêm repo
