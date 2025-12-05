@@ -182,11 +182,17 @@ fi
 
 # 6.3 Chạy blesh
 echo -e "${GREEN}[6/7] Blesh Dotfiles...${NC}"
-if [ -f "$HOME/dotfiles/home/blesh.sh" ]; then
-	bash $HOME/dotfiles/home/blesh.sh
+if [ -f "$HOME/dotfiles/blesh.sh" ]; then
+	bash $HOME/dotfiles/blesh.sh
 else
-	echo " not found $HOME/dotfiles/home/blesh.sh"
+	echo " not found $HOME/dotfiles/blesh.sh"
 
+# 6.3 Chạy ibus-bammbo
+echo -e "${GREEN}[6/7] ibus-bammbo Dotfiles...${NC}"
+if [ -f "$HOME/dotfiles/ibusbamboo.sh" ]; then
+	bash $HOME/dotfiles/ibusbammbo.sh
+else
+	echo " not found $HOME/dotfiles/ibusbammbo.sh"
 fi
 echo "--- Hoàn tất! ---"
 
