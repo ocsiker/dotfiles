@@ -47,7 +47,7 @@ set -o vi
 # Kích hoạt FZF completion (Tab) và Key bindings (Ctrl-R, Ctrl-T)
 ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
-
+ble-import vim-surround
 # --- CẤU HÌNH AUTO-SUGGESTION (GỢI Ý MỜ) ---
 # Tích hợp Bash Completion
 ble-import -d integration/bash-completion-r1
