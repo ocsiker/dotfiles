@@ -1,0 +1,23 @@
+{
+  "Create Oracle User": {
+    "prefix": "createuser",
+    "body": [
+      "CREATE USER ${1:username}",
+      "IDENTIFIED BY ${2:password}",
+      "DEFAULT TABLESPACE ${3:users}  -- Tablespace mặc định (thay bằng tablespace phù hợp)",
+      "TEMPORARY TABLESPACE ${4:temp}; -- Tablespace tạm (thay nếu cần)",
+      "",
+      "-- Cấp quyền cơ bản cho user",
+      "GRANT CONNECT TO ${1:username};  -- Quyền kết nối",
+      "GRANT RESOURCE TO ${1:username}; -- Quyền tài nguyên (thường dùng cho phát triển)",
+      "",
+      "-- Cấp quota (không gian lưu trữ) trên tablespace mặc định",
+      "ALTER USER ${1:username}",
+      "QUOTA ${5:100M} ON ${3:users}; -- Cấp quota, thay đổi theo nhu cầu",
+      "",
+      "-- (Tùy chọn) Cấp quyền cụ thể cho các đối tượng hoặc schema khác",
+      "GRANT SELECT ON ${6:dba_tablespaces} TO ${1:username}; -- Ví dụ: cho phép SELECT trên dba_tablespaces"
+    ],
+    "description": "Tạo user Oracle với quyền cơ bản và quota"
+  }
+}
