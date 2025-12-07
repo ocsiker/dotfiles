@@ -1,0 +1,172 @@
+# create package spec
+snippet ps
+	create or replace package ${1:name}
+	as
+		${0:-- spec}
+	end; -- end of package spec $1
+# create package body
+snippet pb
+	create or replace package body ${1:name}
+	as
+		$0
+	end; -- end of package body $1;
+# package procedure spec
+snippet pps
+	procedure ${1:name}(${0:args});
+# package procedure body
+snippet ppb
+	procedure ${1:name}(${2:args})
+	as
+	begin
+		$0
+	end $2;
+# package function spec
+snippet pfs
+	function ${1:name}(${2:args})
+	  return ${0:type};
+# package function body
+snippet pfb
+	function ${1:name}(${2:args})
+	  return ${3:type}
+	as
+		l_res	$3;
+	begin
+		$0;
+		return l_res;
+	end $1;
+# snow errors
+snippet err
+	show errors;
+# proc/func in parameter
+snippet p
+	${1:name} ${2:in} ${3:type} ${0: := null}
+# package type: record
+snippet tr
+	type tr_${1:name} is record (${0:/* columns */});
+# package type: nested table
+snippet tt
+	type tt_${1:name} is table of tr_${0:name};
+# package type: indexed table
+snippet tti
+	type tt_${1:name} is table of tr_${0:name} index by binary_integer;
+# proc/func comment
+snippet doc
+	/*
+	 *	${0: comment ...}
+	 */
+# plsql block
+snippet beg
+	begin
+		${0}
+	end;
+# plsql block with declare part
+snippet dec
+	declare
+		${1}
+	begin
+		${0}
+	end;
+# return pipe row
+snippet rpipe
+	for ${1:i} in 1 .. ${0:l_res}.count loop
+		pipe row( $2($1) );
+	end loop;
+	return;
+# bulk collect
+snippet bc
+	bulk collect into ${0}
+# local variable
+snippet l
+	l_${1}		${0:number};
+# output
+snippet log
+	dbms_output.put_line('${0}');
+# for loop
+snippet for
+	for ${1:i} in ${2:1}..${3:42} loop
+		${0}
+	end loop;
+# for loop with select
+snippet fors
+	for ${1:rec} in (${2: select}) loop
+		${0}
+	end loop;
+# for loop with collection
+snippet forc
+	for ${1:i} in ${2:l_var}.first .. $2.last loop
+		${0: -- dbms_output.put_line($2($1)); }
+	end loop;
+# if
+snippet if
+	if ${1} then
+		${0}
+	end if;
+snippet ife
+	if ${1} then
+		${2}
+	else
+		${0}
+	end if;
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet tbl
+	CREATE TABLE ${1:table} (
+		${0:columns}
+	);
+snippet col
+	${1:name}	${2:type}	${3:default ''}	${0:not null}
+snippet ccol
+	${1:name}	varchar2(${2:size})	${3:default ''}	${0:not null}
+snippet ncol
+	${1:name}	number	${3:default 0}	${0:not null}
+snippet dcol
+	${1:name}	date	${3:default sysdate}	${0:not null}
+snippet ind
+	CREATE INDEX ${0:$1_$2} on ${1:table}(${2:column});
+snippet uind
+	CREATE UNIQUE INDEX ${1:name} on ${2:table}(${0:column});
+snippet tblcom
+	COMMENT ON TABLE ${1:table} is '${0:comment}';
+snippet colcom
+	COMMENT ON COLUMN ${1:table}.${2:column} is '${0:comment}';
+snippet addcol
+	ALTER TABLE ${1:table} ADD (${2:column} ${0:type});
+snippet seq
+	CREATE SEQUENCE ${1:name} START WITH ${2:1} increment by ${3:1} minvalue ${0:1};
+snippet s*
+	SELECT * FROM ${0:table}
+snippet se
+	SELECT ${0:builtinfunction}
+snippet createt "description"
+	CREATE TABLE ${1:tableName} (, \t${2:attribute(s)}, );
+snippet drop "drop table"
+	DROP TABLE ${1:table};
+snippet dropif "drop if table"
+	DROP TABLE IF EXISTS ${1:table};
+snippet des "describe table"
+	DESCRIBE  ${1:table};
+snippet pri "primary key"
+	PRIMARY KEY ${ 1:key }
