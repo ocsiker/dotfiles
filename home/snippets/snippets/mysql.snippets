@@ -1,0 +1,56 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet tbl
+	CREATE TABLE ${1:table} (
+		${0:columns}
+	);
+snippet col
+	${1:name}	${2:type}	${3:default ''}	${0:not null}
+snippet ccol
+	${1:name}	varchar2(${2:size})	${3:default ''}	${0:not null}
+snippet ncol
+	${1:name}	number	${3:default 0}	${0:not null}
+snippet dcol
+	${1:name}	date	${3:default sysdate}	${0:not null}
+snippet ind
+	CREATE INDEX ${0:$1_$2} on ${1:table}(${2:column});
+snippet uind
+	CREATE UNIQUE INDEX ${1:name} on ${2:table}(${0:column});
+snippet tblcom
+	COMMENT ON TABLE ${1:table} is '${0:comment}';
+snippet colcom
+	COMMENT ON COLUMN ${1:table}.${2:column} is '${0:comment}';
+snippet addcol
+	ALTER TABLE ${1:table} ADD (${2:column} ${0:type});
+snippet seq
+	CREATE SEQUENCE ${1:name} START WITH ${2:1} increment by ${3:1} minvalue ${0:1};
+snippet s*
+	SELECT * FROM ${0:table}
+snippet createt "description"
+	CREATE TABLE ${1:tableName} (, \t${2:attribute(s)}, );
+snippet drop "drop table"
+	DROP TABLE ${1:table1};
+	
