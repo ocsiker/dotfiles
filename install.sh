@@ -67,7 +67,7 @@ else
 	echo "cannot run file  $HOME/dotfiles/getnf.sh"
 fi
 
-# 2.4 git_completion
+# 2.5 git_completion
 if [ -f "$HOME/dotfiles/git_completion.sh" ]; then
 	if dpkg -l | grep -q ; then
 		echo "git_completion đã được cài đặt rồi, bỏ qua."
