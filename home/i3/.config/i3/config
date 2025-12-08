@@ -248,3 +248,9 @@ bindsym $mod+Shift+minus move scratchpad
 # An va hien cua so scratchpad
 bindsym $mod+minus scratchpad show
 
+# Khởi động Greenclip daemon (nếu chưa chạy)
+exec --no-startup-id greenclip daemon
+#
+# Phím tắt mở Clipboard Manager
+# Lưu ý: -run-command '{cmd}' là bắt buộc để Greenclip hoạt động đúng cơ chế paste
+bindsym $mod+c exec --no-startup-id ~/.config/rofi/scripts/clipboard.sh

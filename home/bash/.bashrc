@@ -107,7 +107,6 @@ bind "set mark-symlinked-directories on"
 bind "set menu-complete-display-prefix on"
 bind "set colored-stats on"
 bind "set visible-stats on"
-bind '"\C-xc":"cht --shell "'
 
 # --- 5. KHỞI ĐỘNG BLE.SH (ĐỂ CUỐI CÙNG) ---
 # Đặt ở cuối để đảm bảo mọi biến môi trường đã sẵn sàng
