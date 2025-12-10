@@ -254,3 +254,9 @@ exec --no-startup-id greenclip daemon
 # Phím tắt mở Clipboard Manager
 # Lưu ý: -run-command '{cmd}' là bắt buộc để Greenclip hoạt động đúng cơ chế paste
 bindsym $mod+c exec --no-startup-id ~/.config/rofi/scripts/clipboard.sh
+#
+# Chuột trái (Left Click) - Mod + m
+bindsym $mod+m exec --no-startup-id xdotool keyup Super_L keyup m click 1
+
+# Chuột phải (Right Click) - Mod + n
+bindsym $mod+n exec --no-startup-id xdotool keyup Super_L keyup n click 3
