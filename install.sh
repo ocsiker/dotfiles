@@ -184,6 +184,12 @@ fi
 # Không dùng Slick Greeter, dùng mặc định GTK
 sudo systemctl enable lightdm
 
+# 5.4 Sao chép preference để load lại các rules cho vivaldi 
+if [ -f "system/Preferences" ]; then
+	echo "    - Restore cấu hình rules cho vivaldi..."
+	cp system/Preferences $HOME/.config/vivaldi/Default/Preferences
+fi
+
 # --- PHẦN 6: DOTFILES (STOW) ---
 echo -e "${GREEN}[6/7] Stow Dotfiles...${NC}"
 
