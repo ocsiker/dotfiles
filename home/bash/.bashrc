@@ -8,7 +8,8 @@ case $- in
 *i*) ;;
 *) return ;;
 esac
-
+# Định nghĩa file lưu lịch sử
+export HISTFILE="$HOME/.bash_history"
 # Không lưu các lệnh trùng lặp hoặc bắt đầu bằng dấu cách vào lịch sử
 HISTCONTROL=ignoreboth
 
