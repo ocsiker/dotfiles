@@ -257,6 +257,3 @@ bindsym $mod+c exec --no-startup-id ~/.config/rofi/scripts/clipboard.sh
 #
 # Chuột trái (Left Click) - Mod + m
 bindsym $mod+m exec --no-startup-id xdotool keyup Super_L keyup m click 1
-
-# Chuột phải (Right Click) - Mod + n
-bindsym $mod+n exec --no-startup-id xdotool keyup Super_L keyup n click 3
