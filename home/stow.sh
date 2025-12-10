@@ -17,6 +17,7 @@ PACKAGES=(
 	"alacritty"
 	"i3"
 	"tmux"
+	"warpd"
 	# "scripts"
 )
 
