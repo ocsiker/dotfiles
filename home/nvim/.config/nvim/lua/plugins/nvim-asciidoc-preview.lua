@@ -5,8 +5,4 @@ return {
   opts = {
     -- Add user configuration here
   },
-  keys = {
-    -- map phím bật preview
-    { "<leader>op", "<cmd>AsciidocPreview<CR>", desc = "Open Adoc Preview" },
-  },
 }
