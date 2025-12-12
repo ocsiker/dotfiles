@@ -28,9 +28,13 @@ sudo tee /etc/keyd/default.conf >/dev/null <<EOF
 *
 
 [main]
-# Giữ CapsLock -> Layer Nav
-# Nhấn CapsLock -> Gửi CapsLock (Hệ thống sẽ tự swap thành Esc theo config cũ của bạn)
-capslock = overload(nav, capslock)
+# --- LOGIC MỚI ---
+# 1. Giữ CapsLock -> Layer Nav
+# 2. Nhấn (Tap) CapsLock -> Gửi ESC (Thay vì gửi Capslock rồi đợi XKB swap)
+capslock = overload(nav, esc)
+
+# 3. Map phím Esc vật lý thành CapsLock (để hoàn tất việc Swap 2 phím này)
+esc = capslock
 
 [nav]
 # VIM style navigation
@@ -38,15 +42,14 @@ h = left
 j = down
 k = up
 l = right
-#
+
 # --- Cuộn chuột 4 chiều (Mouse Scroll) ---
 # Dọc (Vertical)
 p = scrollup
 n = scrolldown
-# Ngang (Horizontal) - Mới thêm
+# Ngang (Horizontal)
 [ = scrollleft
 ] = scrollright
-# --- Cuộn chuột (Mouse Wheel) ---
 
 # Tiện ích bổ sung cho nav layer
 b = C-left
