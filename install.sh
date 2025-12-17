@@ -1,222 +1,191 @@
 #!/bin/bash
 
-# Dừng script nếu có lỗi, không chạy tiếp để tránh hỏng hệ thống
+# Dừng script nếu có lỗi
 set -e
 
-# Màu sắc thông báo
+# --- TỰ ĐỘNG PHÁT HIỆN USER THẬT ---
+# Nếu chạy bằng sudo, lấy user gọi sudo. Nếu không, lấy user hiện tại.
+REAL_USER=${SUDO_USER:-$USER}
+
+# Nếu đang chạy trực tiếp bằng root (login root), thì không chấp nhận
+if [ "$REAL_USER" == "root" ]; then
+	echo "LỖI: Bạn không nên chạy script này khi đang login trực tiếp bằng Root."
+	echo "Hãy login bằng user thường và chạy: sudo ./script.sh"
+	exit 1
+fi
+
+# Lấy đường dẫn Home thật của user
+REAL_HOME=$(getent passwd $REAL_USER | cut -d: -f6)
+
+echo "--- Đang setup cho User: $REAL_USER ---"
+echo "--- Thư mục Home thật: $REAL_HOME ---"
+
+# Màu sắc
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 echo -e "${BLUE}=== BẮT ĐẦU SETUP HỆ THỐNG UBUNTU (MINIMAL/I3) ===${NC}"
 
 # --- PHẦN 1: CHUẨN BỊ MÔI TRƯỜNG ---
 echo -e "${GREEN}[1/7] Cập nhật và cài đặt công cụ nền tảng...${NC}"
 sudo apt update
-# Cài các gói cần thiết để chạy script này
 sudo apt install -y git stow curl unzip wget apt-transport-https software-properties-common
 
-# --- PHẦN 2: THÊM REPOSITORIES (VIVALDI, DOCKER) ---
+# --- PHẦN 2: THÊM REPOSITORIES ---
 echo -e "${GREEN}[2/7] Thêm nguồn phần mềm (Repositories)...${NC}"
 
-# 2.1 Vivaldi Browser
-if [ -f "$HOME/dotfiles/vivaldi.sh" ]; then
+# Hàm chạy script con dưới quyền User thật (để tránh lỗi permission)
+run_as_user() {
+	sudo -u $REAL_USER bash "$@"
+}
+
+# 2.1 Vivaldi
+if [ -f "$REAL_HOME/dotfiles/vivaldi.sh" ]; then
 	if dpkg -l | grep -q vivaldi-stable; then
-		echo "Vivaldi đã được cài đặt rồi, bỏ qua."
+		echo "Vivaldi đã được cài đặt, bỏ qua."
 	else
-		echo "install vivaldi browser"
-		bash $HOME/dotfiles/vivaldi.sh
+		echo "Install Vivaldi..."
+		# Vivaldi script thường cần sudo bên trong nó, nên chạy bash thường
+		bash "$REAL_HOME/dotfiles/vivaldi.sh"
 	fi
 else
-	echo "cannot run file $HOME/dotfiles/vivaldi.sh"
+	echo "Warning: Không tìm thấy $REAL_HOME/dotfiles/vivaldi.sh"
 fi
 
-# 2.2 Docker (Dùng script tiện ích chính chủ)
+# 2.2 Docker
 if ! command -v docker &>/dev/null; then
-	echo "    - Cài đặt Docker Engine..."
+	echo "    - Cài đặt Docker..."
 	curl -fsSL https://get.docker.com | sh
-	# Thêm user vào group docker (dùng docker không cần sudo)
-	sudo usermod -aG docker $USER
+	sudo usermod -aG docker $REAL_USER # Add đúng user thật vào group
 else
-	echo "    - Docker đã được cài đặt."
+	echo "    - Docker đã cài đặt."
 fi
 
 # 2.3 eza
-if [ -f "$HOME/dotfiles/eza.sh" ]; then
+if [ -f "$REAL_HOME/dotfiles/eza.sh" ]; then
 	if dpkg -l | grep -q eza; then
-		echo "eza đã được cài đặt rồi, bỏ qua."
+		echo "eza đã cài đặt."
 	else
-		echo "install eza"
-		bash $HOME/dotfiles/eza.sh
+		bash "$REAL_HOME/dotfiles/eza.sh"
 	fi
-else
-	echo "cannot run file $HOME/dotfiles/eza.sh"
 fi
 
 # 2.4 getnf
-if [ -f "$HOME/dotfiles/getnf.sh" ]; then
+if [ -f "$REAL_HOME/dotfiles/getnf.sh" ]; then
 	if dpkg -l | grep -q getnf; then
-		echo "getnf đã được cài đặt rồi, bỏ qua."
+		echo "getnf đã cài đặt."
 	else
-		echo "install getnf"
-		bash $HOME/dotfiles/getnf.sh
+		bash "$REAL_HOME/dotfiles/getnf.sh"
 	fi
-else
-	echo "cannot run file $HOME/dotfiles/getnf.sh"
 fi
 
 # 2.5 git_completion
-if [ -f "$HOME/dotfiles/git_completion.sh" ]; then
-	# Bỏ check dpkg vì git_completion thường chỉ là script cấu hình, không phải gói cài đặt
-	echo "install git_completion"
-	bash $HOME/dotfiles/git_completion.sh
-else
-	echo "cannot run file $HOME/dotfiles/git_completion.sh"
+if [ -f "$REAL_HOME/dotfiles/git_completion.sh" ]; then
+	echo "Install git_completion..."
+	bash "$REAL_HOME/dotfiles/git_completion.sh"
 fi
 
-# Cập nhật lại apt sau khi thêm repo
 sudo apt update
 
-# --- PHẦN 3: CÀI ĐẶT APP TỪ DANH SÁCH (PKGLIST) ---
-echo -e "${GREEN}[3/7] Cài đặt ứng dụng từ pkglist.txt...${NC}"
+# --- PHẦN 3: CÀI APP TỪ PKGLIST ---
+echo -e "${GREEN}[3/7] Cài đặt ứng dụng từ pkglist...${NC}"
 
-# Đảm bảo cài Neovim (nếu chưa có trong list) và LightDM cơ bản
+# Cài LightDM và deps
 sudo apt install -y lightdm lightdm-gtk-greeter lightdm-settings lightdm-autologin-greeter \
-	libxi-dev \
-	libxinerama-dev \
-	libxft-dev \
-	libxfixes-dev \
-	libxtst-dev \
-	libx11-dev \
-	libcairo2-dev \
-	libxkbcommon-dev \
-	libwayland-dev \
-	scdoc \
-	libspnav-dev
-if [ -f "system/lightdm.config" ]; then
-	echo "    - Restore cấu hình lightdm cho ocsiker..."
-	sudo cp system/lightdm.conf /etc/lightdm/
-fi
+	libxi-dev libxinerama-dev libxft-dev libxfixes-dev libxtst-dev libx11-dev \
+	libcairo2-dev libxkbcommon-dev libwayland-dev scdoc libspnav-dev
 
-if [ -f "pkglist.txt" ]; then
-	# Lọc bỏ các gói hệ thống cũ không còn tồn tại hoặc gây lỗi
-	# xargs cài song song giúp nhanh hơn
-	grep -vE '^\s*#|^\s*$' pkglist.txt | xargs sudo apt install -y || echo -e "${RED}Có một số gói lỗi, nhưng script vẫn tiếp tục...${NC}"
-else
-	echo "Warning: Không tìm thấy pkglist.txt"
-fi
-
-# Fix lỗi codec video cho Vivaldi
-if command -v /opt/vivaldi/update-ffmpeg &>/dev/null; then
-	echo "    - Fix codec Vivaldi..."
-	sudo /opt/vivaldi/update-ffmpeg
-fi
-
-# --- PHẦN 4: CÀI ĐẶT APP NGOÀI (SQLcl, FZF) ---
-echo -e "${GREEN}[4/7] Cài đặt ứng dụng thủ công...${NC}"
-
-# 4.1 SQLcl (Từ file zip trong repo)
-if [ ! -d "/opt/sqlcl" ] && [ -f "sqlcl-latest.zip" ]; then
-	echo "    - Cài đặt SQLcl..."
-	sudo unzip -q sqlcl-latest.zip -d /opt/
-	sudo ln -sf /opt/sqlcl/bin/sql /usr/local/bin/sql
-	echo "    - Xong SQLcl."
-elif [ -d "/opt/sqlcl" ]; then
-	echo "    - SQLcl đã cài đặt."
-else
-	echo "    - Không thấy file sqlcl-latest.zip, bỏ qua."
-fi
-
-# 4.2 FZF (Cài từ Git để có keybindings Ctrl+R, Ctrl+T)
-if [ ! -d "$HOME/.fzf" ]; then
-	echo "    - Cài đặt FZF (Git version)..."
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install --all --no-update-rc
-else
-	echo "    - FZF đã cài đặt."
-fi
-
-# 4.3 CÀI ĐẶT WARPD (BUILD FROM SOURCE) ---
-echo -e "${GREEN}[5/8] Cài đặt Warpd (Mouse Control)...${NC}"
-
-if ! command -v warpd &>/dev/null; then
-	echo "    - Đang tải và biên dịch Warpd..."
-	# Clone vào thư mục tạm /tmp để không làm rác máy
-	rm -rf /tmp/warpd
-	git clone https://github.com/rvaiya/warpd.git /tmp/warpd
-	#
-	# Vào thư mục và build
-	pushd /tmp/warpd >/dev/null
-	make clean
-	make
-	# Cài đặt vào /usr/local/bin
-	sudo make install
-	popd >/dev/null
-	echo "    - Đã cài đặt Warpd thành công."
-else
-	echo "    - Warpd đã được cài đặt."
-fi
-
-# 4.4 CÀI ĐẶT Keyd (BUILD FROM SOURCE) ---
-if [ -f "keyd.sh" ]; then
-	bash keyd.sh
-fi
-
-# --- PHẦN 5: CẤU HÌNH HỆ THỐNG (/etc) ---
-echo -e "${GREEN}[5/7] Cấu hình hệ thống...${NC}"
-
-# 5.2 LightDM config
+# Restore LightDM config (Cần quyền root -> giữ nguyên sudo cp)
 if [ -f "system/lightdm.conf" ]; then
 	echo "    - Restore cấu hình lightdm..."
 	sudo cp system/lightdm.conf /etc/lightdm/
 fi
 
-# 5.3 LightDM (Enable service)
+if [ -f "pkglist.txt" ]; then
+	grep -vE '^\s*#|^\s*$' pkglist.txt | xargs sudo apt install -y || echo "Có lỗi nhỏ khi cài package."
+fi
+
+# Fix codec Vivaldi
+if command -v /opt/vivaldi/update-ffmpeg &>/dev/null; then
+	sudo /opt/vivaldi/update-ffmpeg
+fi
+
+# --- PHẦN 4: APP THỦ CÔNG ---
+echo -e "${GREEN}[4/7] Cài đặt ứng dụng thủ công...${NC}"
+
+# 4.1 SQLcl
+if [ ! -d "/opt/sqlcl" ] && [ -f "sqlcl-latest.zip" ]; then
+	echo "    - Cài SQLcl..."
+	sudo unzip -q sqlcl-latest.zip -d /opt/
+	sudo ln -sf /opt/sqlcl/bin/sql /usr/local/bin/sql
+fi
+
+# 4.2 FZF (QUAN TRỌNG: Cài vào Home của User thật)
+if [ ! -d "$REAL_HOME/.fzf" ]; then
+	echo "    - Cài FZF cho user $REAL_USER..."
+	# Chạy lệnh git clone dưới quyền user thật
+	sudo -u $REAL_USER git clone --depth 1 https://github.com/junegunn/fzf.git $REAL_HOME/.fzf
+	sudo -u $REAL_USER $REAL_HOME/.fzf/install --all --no-update-rc
+else
+	echo "    - FZF đã cài đặt."
+fi
+
+# 4.3 Warpd
+if ! command -v warpd &>/dev/null; then
+	echo "    - Cài Warpd..."
+	rm -rf /tmp/warpd
+	git clone https://github.com/rvaiya/warpd.git /tmp/warpd
+	pushd /tmp/warpd >/dev/null
+	make clean && make && sudo make install
+	popd >/dev/null
+fi
+
+# 4.4 Keyd
+if [ -f "keyd.sh" ]; then
+	bash keyd.sh
+fi
+
+# --- PHẦN 5: CẤU HÌNH HỆ THỐNG ---
+echo -e "${GREEN}[5/7] Cấu hình hệ thống...${NC}"
+
 sudo systemctl enable lightdm
 
-# 5.4 Sao chép preference để load lại các rules cho vivaldi
+# 5.4 Vivaldi Preferences (Copy vào Home thật)
 if [ -f "system/Preferences" ]; then
-	echo "    - Restore cấu hình rules cho vivaldi..."
-	# Tạo thư mục nếu chưa có để tránh lỗi
-	mkdir -p $HOME/.config/vivaldi/Default/
-	cp system/Preferences $HOME/.config/vivaldi/Default/Preferences
+	echo "    - Restore Vivaldi Preferences..."
+	# Tạo thư mục với quyền của User thật
+	sudo -u $REAL_USER mkdir -p $REAL_HOME/.config/vivaldi/Default/
+	sudo -u $REAL_USER cp system/Preferences $REAL_HOME/.config/vivaldi/Default/Preferences
 fi
 
 # --- PHẦN 6: DOTFILES (STOW) ---
 echo -e "${GREEN}[6/7] Stow Dotfiles...${NC}"
 
-# 6.2 Chạy Stow
-cd $HOME/dotfiles/home
-if [ -f "$HOME/dotfiles/home/stow.sh" ]; then
-	bash $HOME/dotfiles/home/stow.sh
+# 6.2 Stow (QUAN TRỌNG: Chạy dưới quyền User thật)
+if [ -f "$REAL_HOME/dotfiles/home/stow.sh" ]; then
+	echo "    - Running Stow..."
+	# Chuyển thư mục làm việc và chạy script
+	cd $REAL_HOME/dotfiles/home
+	# Gọi stow.sh nhưng đảm bảo nó chạy với quyền user, không phải root
+	sudo -u $REAL_USER bash $REAL_HOME/dotfiles/home/stow.sh
 else
-	echo " not found $HOME/dotfiles/home/stow.sh"
+	echo "Not found: $REAL_HOME/dotfiles/home/stow.sh"
 fi
 
-# 6.3 Chạy blesh
-echo -e "${GREEN}[6/7] Blesh Dotfiles...${NC}"
-if [ -f "$HOME/dotfiles/blesh.sh" ]; then
-	bash $HOME/dotfiles/blesh.sh
-else
-	echo " not found $HOME/dotfiles/blesh.sh"
+# 6.3 Blesh
+if [ -f "$REAL_HOME/dotfiles/blesh.sh" ]; then
+	sudo -u $REAL_USER bash $REAL_HOME/dotfiles/blesh.sh
 fi
 
-# 6.4 Chạy ibus-bamboo
-echo -e "${GREEN}[6/7] ibus-bamboo Dotfiles...${NC}"
-if [ -f "$HOME/dotfiles/ibusbamboo.sh" ]; then
-	bash $HOME/dotfiles/ibusbamboo.sh
-else
-	echo " not found $HOME/dotfiles/ibusbamboo.sh"
+# 6.4 Ibus
+if [ -f "$REAL_HOME/dotfiles/ibusbamboo.sh" ]; then
+	bash $REAL_HOME/dotfiles/ibusbamboo.sh
 fi
-
-echo "--- Hoàn tất! ---"
-echo "    - Đã link xong: i3, rofi, polybar, bash, git, nvim, blesh..."
 
 # --- PHẦN 7: DỌN DẸP ---
-echo -e "${GREEN}[7/7] Dọn dẹp hệ thống...${NC}"
 sudo apt autoremove -y
 sudo apt clean
 
-echo -e "${BLUE}=== HOÀN TẤT! HÃY KHỞI ĐỘNG LẠI MÁY ĐỂ VÀO I3 ===${NC}"
-echo "Lưu ý: Bạn cần logout/login để Docker hoạt động không cần sudo."
+echo -e "${BLUE}=== HOÀN TẤT! User: $REAL_USER ===${NC}"
