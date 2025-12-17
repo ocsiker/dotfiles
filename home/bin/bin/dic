@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# --- 1. CẤU HÌNH ---
+BASE_DIR="$HOME/Dic"
+EXT="md|txt|org|adoc"
+
+# --- 2. CÁC HÀM HỖ TRỢ ---
+show_content() {
+	echo "---------------------------------"
+	if command -v bat &>/dev/null; then
+		bat --style=plain --color=always "$1"
+	else
+		cat "$1"
+	fi
+	echo "---------------------------------"
+}
+
+find_files() {
+	find "$1" -type f | grep -E "(\.(${EXT})$|/[^/.]+$)"
+}
+
+# --- 3. XỬ LÝ THAM SỐ ĐẶC BIỆT (Logic mới) ---
+FORCE_ONLINE=false
+
+# Kiểm tra nếu tham số đầu tiên là "cht"
+if [ "$1" == "cht" ]; then
+	FORCE_ONLINE=true
+	shift # Đẩy tham số: xóa 'cht' đi, $2 sẽ thành $1 mới
+fi
+
+# --- 4. LOGIC CHÍNH ---
+
+# TRƯỜNG HỢP A: Không nhập từ khóa
+# Nếu không gõ gì (hoặc chỉ gõ 'dic cht' mà không có từ khóa sau đó)
+if [ -z "$1" ]; then
+	if [ "$FORCE_ONLINE" = true ]; then
+		echo "Bạn đang ở chế độ Online (cht.sh). Hãy nhập từ khóa."
+		echo "Ví dụ: dic cht java list"
+		exit 0
+	else
+		# Chế độ duyệt file Local (như cũ)
+		cd "$BASE_DIR" || exit
+		SELECTED_FILE=$(find_files . | fzf --preview 'cat {}' --preview-window=right:60%:wrap)
+		if [ -n "$SELECTED_FILE" ]; then
+			show_content "$SELECTED_FILE"
+		fi
+		exit 0
+	fi
+fi
+
+# Ghép các từ khóa còn lại thành chuỗi tìm kiếm
+SEARCH_QUERY="$*"
+
+# TRƯỜNG HỢP B: Tìm kiếm Local (Chỉ chạy khi KHÔNG bắt buộc online)
+if [ "$FORCE_ONLINE" = false ]; then
+	cd "$BASE_DIR" || exit
+	# Tìm file và lọc
+	LOCAL_RESULT=$(find_files . | fzf --filter="$SEARCH_QUERY" | head -n 1)
+
+	if [ -n "$LOCAL_RESULT" ]; then
+		echo -e "\033[1;32m[Local] Tìm thấy:\033[0m $LOCAL_RESULT"
+		show_content "$LOCAL_RESULT"
+		exit 0
+	fi
+	# Nếu không tìm thấy thì báo và để nó trôi xuống phần Online
+	echo -e "\033[1;33m[Local] Không tìm thấy. Chuyển sang tìm Online...\033[0m"
+else
+	echo -e "\033[1;34m[Mode] Bắt buộc tìm trên Online...\033[0m"
+fi
+
+# TRƯỜNG HỢP C: Tìm kiếm Online (cht.sh / tldr)
+REMOTE_QUERY=$(echo "$SEARCH_QUERY" | tr ' ' '/')
+LAST_ARG="${@: -1}"
+
+# Nếu ép dùng cht (dic cht ...) thì ưu tiên gọi cht.sh luôn, bỏ qua tldr để sát nghĩa
+if [ "$FORCE_ONLINE" = true ]; then
+	curl -s "cht.sh/$REMOTE_QUERY"
+else
+	# Logic fallback thường: ưu tiên tldr trước nếu có
+	if command -v tldr &>/dev/null; then
+		tldr "$LAST_ARG"
+	else
+		curl -s "cht.sh/$REMOTE_QUERY"
+	fi
+fi
