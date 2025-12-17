@@ -26,3 +26,8 @@ for _, mod in ipairs(keymaps) do
     vim.notify("Lỗi khi load keymap: " .. mod .. "\n" .. err, vim.log.levels.ERROR)
   end
 end
+
+-- Mở file hiện tại trên GitHub
+vim.keymap.set("n", "<leader>go", function()
+  Snacks.gitbrowse()
+end, { desc = "Open on GitHub" })

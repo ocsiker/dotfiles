@@ -129,6 +129,8 @@ wpasupplicant
 x11-xserver-utils
 xclip
 xcursor-themes
+xdotool
+fd-find
 xfsprogs
 xorg
 xsel

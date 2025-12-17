@@ -166,6 +166,16 @@ fi
 # --- PHẦN 5: CẤU HÌNH HỆ THỐNG (/etc) ---
 echo -e "${GREEN}[5/7] Cấu hình hệ thống...${NC}"
 
+<<<<<<< HEAD
+=======
+# # 5.1 Keyboard (/etc/default/keyboard)
+# if [ -f "system/keyboard" ]; then
+# 	echo "    - Restore cấu hình bàn phím..."
+# 	sudo cp system/keyboard /etc/default/keyboard
+# 	sudo udevadm trigger --subsystem-match=input --action=change
+# fi
+
+>>>>>>> 9c701b0210ee3fac016f1db656323314575c5f57
 # 5.2 LightDM config
 if [ -f "system/lightdm.conf" ]; then
 	echo "    - Restore cấu hình lightdm..."
