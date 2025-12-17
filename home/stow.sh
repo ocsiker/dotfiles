@@ -18,6 +18,7 @@ PACKAGES=(
 	"i3"
 	"tmux"
 	"warpd"
+	"Dic"
 	# "scripts"
 )
 
