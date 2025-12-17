@@ -29,7 +29,7 @@ if [ -f "$HOME/dotfiles/vivaldi.sh" ]; then
 		bash $HOME/dotfiles/vivaldi.sh
 	fi
 else
-	echo "cannot run file  $HOME/dotfiles/vivaldi.sh"
+	echo "cannot run file $HOME/dotfiles/vivaldi.sh"
 fi
 
 # 2.2 Docker (Dùng script tiện ích chính chủ)
@@ -51,9 +51,8 @@ if [ -f "$HOME/dotfiles/eza.sh" ]; then
 		bash $HOME/dotfiles/eza.sh
 	fi
 else
-	echo "cannot run file  $HOME/dotfiles/eza.sh"
+	echo "cannot run file $HOME/dotfiles/eza.sh"
 fi
-
 
 # 2.4 getnf
 if [ -f "$HOME/dotfiles/getnf.sh" ]; then
@@ -64,19 +63,18 @@ if [ -f "$HOME/dotfiles/getnf.sh" ]; then
 		bash $HOME/dotfiles/getnf.sh
 	fi
 else
-	echo "cannot run file  $HOME/dotfiles/getnf.sh"
+	echo "cannot run file $HOME/dotfiles/getnf.sh"
 fi
 
 # 2.5 git_completion
 if [ -f "$HOME/dotfiles/git_completion.sh" ]; then
-	if dpkg -l | grep -q ; then
-		echo "git_completion đã được cài đặt rồi, bỏ qua."
-	else
-		echo "install git_completion"
-		bash $HOME/dotfiles/git_completion.sh
-	fi
+	# Bỏ check dpkg vì git_completion thường chỉ là script cấu hình, không phải gói cài đặt
+	echo "install git_completion"
+	bash $HOME/dotfiles/git_completion.sh
 else
-	echo "cannot run file  $HOME/dotfiles/git_completion.sh"
+	echo "cannot run file $HOME/dotfiles/git_completion.sh"
+fi
+
 # Cập nhật lại apt sau khi thêm repo
 sudo apt update
 
@@ -135,10 +133,10 @@ if [ ! -d "$HOME/.fzf" ]; then
 	echo "    - Cài đặt FZF (Git version)..."
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install --all --no-update-rc
-	# (--all: bật keybindings, --no-update-rc: để ta tự config trong stow bashrc)
 else
 	echo "    - FZF đã cài đặt."
 fi
+
 # 4.3 CÀI ĐẶT WARPD (BUILD FROM SOURCE) ---
 echo -e "${GREEN}[5/8] Cài đặt Warpd (Mouse Control)...${NC}"
 
@@ -159,6 +157,7 @@ if ! command -v warpd &>/dev/null; then
 else
 	echo "    - Warpd đã được cài đặt."
 fi
+
 # 4.4 CÀI ĐẶT Keyd (BUILD FROM SOURCE) ---
 if [ -f "keyd.sh" ]; then
 	bash keyd.sh
@@ -167,40 +166,26 @@ fi
 # --- PHẦN 5: CẤU HÌNH HỆ THỐNG (/etc) ---
 echo -e "${GREEN}[5/7] Cấu hình hệ thống...${NC}"
 
-# 5.1 Keyboard (/etc/default/keyboard)
-if [ -f "system/keyboard" ]; then
-	echo "    - Restore cấu hình bàn phím..."
-	sudo cp system/keyboard /etc/default/keyboard
-	sudo udevadm trigger --subsystem-match=input --action=change
-fi
-
 # 5.2 LightDM config
 if [ -f "system/lightdm.conf" ]; then
-	echo "    - Restore cấu hình bàn phím..."
+	echo "    - Restore cấu hình lightdm..."
 	sudo cp system/lightdm.conf /etc/lightdm/
 fi
 
 # 5.3 LightDM (Enable service)
-# Không dùng Slick Greeter, dùng mặc định GTK
 sudo systemctl enable lightdm
 
-# 5.4 Sao chép preference để load lại các rules cho vivaldi 
+# 5.4 Sao chép preference để load lại các rules cho vivaldi
 if [ -f "system/Preferences" ]; then
 	echo "    - Restore cấu hình rules cho vivaldi..."
+	# Tạo thư mục nếu chưa có để tránh lỗi
+	mkdir -p $HOME/.config/vivaldi/Default/
 	cp system/Preferences $HOME/.config/vivaldi/Default/Preferences
 fi
 
 # --- PHẦN 6: DOTFILES (STOW) ---
 echo -e "${GREEN}[6/7] Stow Dotfiles...${NC}"
 
-# 6.1 Xử lý xung đột file mặc định (Backup file cũ)
-#echo "    - Backup file config mặc định..."
-#[ -f "$HOME/.bashrc" ] && [ ! -L "$HOME/.bashrc" ] && mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
-#[ -f "$HOME/.bash_profile" ] && [ ! -L "$HOME/.bash_profile" ] && mv "$HOME/.bash_profile" "$HOME/.bash_profile.bak"
-#[ -f "$HOME/.profile" ] && [ ! -L "$HOME/.profile" ] && mv "$HOME/.profile" "$HOME/.profile.bak"
-#[ -f "$HOME/.gitconfig" ] && [ ! -L "$HOME/.gitconfig" ] && mv "$HOME/.gitconfig" "$HOME/.gitconfig.bak"
-
-#
 # 6.2 Chạy Stow
 cd $HOME/dotfiles/home
 if [ -f "$HOME/dotfiles/home/stow.sh" ]; then
@@ -215,16 +200,17 @@ if [ -f "$HOME/dotfiles/blesh.sh" ]; then
 	bash $HOME/dotfiles/blesh.sh
 else
 	echo " not found $HOME/dotfiles/blesh.sh"
-
-# 6.3 Chạy ibus-bammbo
-echo -e "${GREEN}[6/7] ibus-bammbo Dotfiles...${NC}"
-if [ -f "$HOME/dotfiles/ibusbamboo.sh" ]; then
-	bash $HOME/dotfiles/ibusbammbo.sh
-else
-	echo " not found $HOME/dotfiles/ibusbammbo.sh"
 fi
-echo "--- Hoàn tất! ---"
 
+# 6.4 Chạy ibus-bamboo
+echo -e "${GREEN}[6/7] ibus-bamboo Dotfiles...${NC}"
+if [ -f "$HOME/dotfiles/ibusbamboo.sh" ]; then
+	bash $HOME/dotfiles/ibusbamboo.sh
+else
+	echo " not found $HOME/dotfiles/ibusbamboo.sh"
+fi
+
+echo "--- Hoàn tất! ---"
 echo "    - Đã link xong: i3, rofi, polybar, bash, git, nvim, blesh..."
 
 # --- PHẦN 7: DỌN DẸP ---
