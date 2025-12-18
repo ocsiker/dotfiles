@@ -86,7 +86,15 @@ if [ -f "$REAL_HOME/dotfiles/git_completion.sh" ]; then
 	echo "Install git_completion..."
 	bash "$REAL_HOME/dotfiles/git_completion.sh"
 fi
-
+#
+# 2.6 github gh
+if [ -f "$REAL_HOME/dotfiles/gh.sh" ]; then
+	if dpkg -l | grep -q gh; then
+		echo "eza đã cài đặt."
+	else
+		bash "$REAL_HOME/dotfiles/gh.sh"
+	fi
+fi
 sudo apt update
 
 # --- PHẦN 3: CÀI APP TỪ PKGLIST ---
