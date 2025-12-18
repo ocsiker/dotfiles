@@ -1,22 +1,29 @@
 return {
   "pwntester/octo.nvim",
-  opts = {
-    mappings = {
-      review_diff = {
-        -- 1. Map lại phím Add Comment (tránh xung đột với ca của mini.ai)
-        add_comment = { lhs = "<leader>ac", desc = "Add Comment" },
+  opts = function(_, opts)
+    vim.treesitter.language.register("markdown", "octo")
+    if LazyVim.has_extra("editor.telescope") then
+      opts.picker = "telescope"
+    elseif LazyVim.has_extra("editor.fzf") then
+      opts.picker = "fzf-lua"
+    elseif LazyVim.has_extra("editor.snacks_picker") then
+      opts.picker = "snacks"
+    else
+      LazyVim.error("`octo.nvim` requires `telescope.nvim` or `fzf-lua` or `snacks.nvim`")
+    end
 
-        -- Map thêm phím xóa comment nếu cần
-        delete_comment = { lhs = "<leader>dc", desc = "Delete Comment" },
-
-        -- 2. Map phím điều hướng File (Next/Prev File)
-        -- Lưu ý: Octo thường dùng Location List cho danh sách file trong review
-        next_entry = { lhs = "]f", desc = "Next File" },
-        prev_entry = { lhs = "[f", desc = "Prev File" },
-
-        -- Map phím duyệt file (Mark Viewed) + Next file
-        toggle_viewed = { lhs = "<leader>mv", desc = "Mark Viewed" },
-      },
-    },
-  },
+    -- Keep some empty windows in sessions
+    vim.api.nvim_create_autocmd("ExitPre", {
+      group = vim.api.nvim_create_augroup("octo_exit_pre", { clear = true }),
+      callback = function(ev)
+        local keep = { "octo" }
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          if vim.tbl_contains(keep, vim.bo[buf].filetype) then
+            vim.bo[buf].buftype = "" -- set buftype to empty to keep the window
+          end
+        end
+      end,
+    })
+  end,
 }
