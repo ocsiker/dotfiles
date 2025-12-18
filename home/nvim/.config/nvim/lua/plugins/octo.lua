@@ -1,46 +1,22 @@
 return {
   "pwntester/octo.nvim",
-  cmd = "Octo",
   opts = {
-    -- or "fzf-lua" or "snacks" or "default"
-    picker = "snacks",
-    -- bare Octo command opens picker of commands
-    enable_builtin = true,
-  },
-  keys = {
-    {
-      "<leader>oi",
-      "<CMD>Octo issue list<CR>",
-      desc = "List GitHub Issues",
+    mappings = {
+      review_diff = {
+        -- 1. Map lại phím Add Comment (tránh xung đột với ca của mini.ai)
+        add_comment = { lhs = "<leader>ac", desc = "Add Comment" },
+
+        -- Map thêm phím xóa comment nếu cần
+        delete_comment = { lhs = "<leader>dc", desc = "Delete Comment" },
+
+        -- 2. Map phím điều hướng File (Next/Prev File)
+        -- Lưu ý: Octo thường dùng Location List cho danh sách file trong review
+        next_entry = { lhs = "]f", desc = "Next File" },
+        prev_entry = { lhs = "[f", desc = "Prev File" },
+
+        -- Map phím duyệt file (Mark Viewed) + Next file
+        toggle_viewed = { lhs = "<leader>mv", desc = "Mark Viewed" },
+      },
     },
-    {
-      "<leader>op",
-      "<CMD>Octo pr list<CR>",
-      desc = "List GitHub PullRequests",
-    },
-    {
-      "<leader>od",
-      "<CMD>Octo discussion list<CR>",
-      desc = "List GitHub Discussions",
-    },
-    {
-      "<leader>on",
-      "<CMD>Octo notification list<CR>",
-      desc = "List GitHub Notifications",
-    },
-    {
-      "<leader>os",
-      function()
-        require("octo.utils").create_base_search_command({ include_current_repo = true })
-      end,
-      desc = "Search GitHub",
-    },
-  },
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    -- "nvim-telescope/telescope.nvim",
-    -- OR "ibhagwan/fzf-lua",
-    "folke/snacks.nvim",
-    "nvim-tree/nvim-web-devicons",
   },
 }
