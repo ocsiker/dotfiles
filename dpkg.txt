@@ -55,6 +55,7 @@ lightdm-settings
 linux-generic
 login
 lsd
+luarocks
 lvm2
 lxd-installer
 maven
