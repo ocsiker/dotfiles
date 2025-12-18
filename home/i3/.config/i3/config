@@ -201,8 +201,8 @@ bindsym $mod+shift+o exec code
 bindsym $mod+Shift+space exec --no-startup-id ~/.config/rofi/launchers/type-1/launcher.sh
 bindsym $mod+shift+n exec  --no-startup-id ~/.config/rofi/scripts/fileBrowser.sh
 bindsym $mod+Shift+question exec --no-startup-id ~/.config/rofi/scripts/keys.sh
-bindsym $mod+Control+space exec  --no-startup-id ~/.config/rofi/scripts/window.sh
-bindsym $mod+space exec  --no-startup-id ~/.config/rofi/scripts/run.sh
+bindsym $mod+space exec  --no-startup-id ~/.config/rofi/scripts/window.sh
+bindsym $mod+Control+space exec  --no-startup-id ~/.config/rofi/scripts/run.sh
 # bindsym $mod+mod1+space exec  --no-startup-id ~/.config/rofi/scripts/workspace.sh
 # run bluetooth 
 bindsym $mod+b exec  --no-startup-id ~/.config/rofi/scripts/rofi-bluetooth
