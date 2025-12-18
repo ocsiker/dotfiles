@@ -27,3 +27,10 @@ this is for new set up pc
     └── bin/                    # Script cá nhân
         └── .local/bin/         # (Lưu ý cấu trúc này để stow vào đúng ~/.local/bin)
             └── cac-script-cua-ban
+
+this is for new set up pc mobile
+clone to home directory
+cd dotfiles
+chmox +x install.sh vivaldi.sh keyd.sh
+bash install.sh
+done
