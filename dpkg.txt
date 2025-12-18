@@ -34,7 +34,6 @@ fontconfig
 fonts-font-awesome
 fonts-noto-color-emoji
 git
-gh
 grep
 grub-efi-amd64
 grub-efi-amd64-signed
