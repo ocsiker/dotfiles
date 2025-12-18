@@ -1,0 +1,10 @@
+Dây là cách sử dụng dic
+
+- Mục đích:
+  Dùng để search các ghi chú trong thư mục HOME/Dic,
+  Các file trong thư mục ghi chú sẽ được search theo cú pháp sau:
+  $> dic <từ cần search>
+  nếu kết quả không có ở local nó sẽ search ở cheat.sh
+
+  có thể ép buộc nó search ở cheat.sh bằng các thêm tham số theo sau:
+  $> dic cht <từ cần search>

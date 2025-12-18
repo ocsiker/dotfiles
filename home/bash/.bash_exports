@@ -1,0 +1,27 @@
+
+# export PATH="$HOME/bin:$PATH"
+# # export PATH="/usr/lib/jvm/java-17-openjdk-amd64/bin/:$PATH"
+# export PATH="/usr/lib/jvm/java-1.21.0-openjdk-amd64/bin/:$PATH"
+# export PATH="/opt/gradle/gradle-8.1.1/bin/:$PATH:$HOME/.local/bin/"
+# export PATH="/opt/sqlcl/bin/:/opt/sqldeveloper/:$PATH"
+# export PATH=/usr/local/ffmpeg/bin:/opt/gradle/gradle-8.1.1/bin/:/usr/lib/jvm/java-1.21.0-openjdk-amd64/bin/:/home/ocsiker/bin:/opt/gradle/gradle-8.1.1/bin/:/home/ocsiker/bin:/opt/maven/bin:/opt/gradle/latest/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/go/bin
+export LD_LIBRARY_PATH=/usr/local/ffmpeg/lib:
+# Add FFMpeg bin & library paths:
+export LD_LIBRARY_PATH=/usr/local/ffmpeg/lib:/usr/local/ffmpeg/lib:
+# Xóa hoặc comment (thêm #) các lệnh export PATH cũ, chỉ giữ một lệnh cuối cùng như sau:
+
+export PATH="/opt/docker-desktop/:/opt/sqlcl/bin:/opt/sqldeveloper:/usr/local/ffmpeg/bin:/opt/gradle/gradle-8.1.1/bin/:/usr/lib/jvm/java-1.21.0-openjdk-amd64:/home/ocsiker/bin:/opt/maven/bin:/opt/gradle/latest/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/go/bin:$HOME/.local/bin:$HOME/.cargo/bin/"
+export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
+#khong hoi mat khau
+export GNOME_KEYRING_CONTROL=
+# Ghi ngay lập tức vào file history sau mỗi lệnh (tránh mất khi crash/tắt nóng)
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+#export editor va visual to use vim
+if command -v nvim >/dev/null 2>&1; then
+	export EDITOR=nvim
+	export VISUAL=nvim
+else
+    export VISUAL=vim
+	export EDITOR=vim
+fi

@@ -1,0 +1,3 @@
+#scroll page in normal mode
+scroll_down: d
+scroll_up: u
