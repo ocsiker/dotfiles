@@ -2,7 +2,7 @@
 
 # Cấu hình tên file
 #
-INPUT_FILE="$HOME/dotfiles/gems_backup.txt"
+INPUT_FILE="/home/ocsiker/dotfiles/gems_backup.txt"
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
