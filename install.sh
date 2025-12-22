@@ -128,6 +128,7 @@ if [ ! -d "/opt/sqlcl" ] && [ -f "sqlcl-latest.zip" ]; then
 	echo "    - Cài SQLcl..."
 	sudo unzip -q sqlcl-latest.zip -d /opt/
 	sudo ln -sf /opt/sqlcl/bin/sql /usr/local/bin/sql
+	sudo chown -R $USER:$USER /opt/sqlcl
 fi
 
 # 4.2 FZF (QUAN TRỌNG: Cài vào Home của User thật)
