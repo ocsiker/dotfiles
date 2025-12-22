@@ -1,3 +1,4 @@
+-- sqlfluff:ignore
 -- --- CONFIG ---
 SET SQLFORMAT ansiconsole
 SET PAGESIZE 1000
