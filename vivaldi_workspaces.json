@@ -1,0 +1,179 @@
+"workdspace":{
+      "button": {
+        "show_name": false
+      },
+      "link_routes": [
+        {
+          "expression": "kamihq",
+          "id": "d2393488-67a9-4c51-906c-b1366e7a54fa",
+          "type": "CONTAINS",
+          "workspaceId": 1758766256577
+        },
+        {
+          "expression": "messenger",
+          "id": "9fcaae1f-e10e-4cf9-9fc3-fade2806eb6e",
+          "type": "CONTAINS",
+          "workspaceId": 1758766843876
+        },
+        {
+          "expression": "zalo",
+          "id": "0fd80f59-cd6b-4abb-a866-d22e17b84cef",
+          "type": "CONTAINS",
+          "workspaceId": 1758766843876
+        },
+        {
+          "expression": "chatgpt",
+          "id": "e212873f-8283-4488-bc60-edbaf22c79ff",
+          "type": "CONTAINS",
+          "workspaceId": 1758766875815
+        },
+        {
+          "expression": "grok",
+          "id": "43827636-77df-4399-9ed3-3bf216f5dc63",
+          "type": "CONTAINS",
+          "workspaceId": 1758766875815
+        },
+        {
+          "expression": "gemini",
+          "id": "b4453aa4-cffa-4f89-ac34-4f5966f55c4a",
+          "type": "CONTAINS",
+          "workspaceId": 1758766875815
+        },
+        {
+          "expression": "spotify",
+          "id": "fa237d0a-c141-4204-970f-9e2278f142ea",
+          "type": "CONTAINS",
+          "workspaceId": 1.75876696076E+12
+        },
+        {
+          "expression": "youtube",
+          "id": "ec2dd75e-7799-49f8-88e3-d7fe3935d8cc",
+          "type": "CONTAINS",
+          "workspaceId": 1.75876696076E+12
+        },
+        {
+          "expression": "notebooklm.google",
+          "id": "f7cc3f87-ea9b-4191-be14-608b1f80672f",
+          "type": "CONTAINS",
+          "workspaceId": 1758766875815
+        },
+        {
+          "expression": "oracle",
+          "id": "be236741-b5cb-4cab-a4dc-6990939109a0",
+          "type": "CONTAINS",
+          "workspaceId": 1758766988839
+        },
+        {
+          "expression": "google",
+          "id": "8e1a9551-b30e-4741-b099-16789edae125",
+          "type": "CONTAINS",
+          "workspaceId": 1758768267953
+        },
+        {
+          "expression": "facebook",
+          "id": "1e00a460-b95a-4677-9ef2-1a4429aa68a6",
+          "type": "CONTAINS",
+          "workspaceId": 1758773307701
+        },
+        {
+          "expression": "voz",
+          "id": "a63fa097-1a19-459f-a904-7e436cc0669c",
+          "type": "CONTAINS",
+          "workspaceId": 1758773307701
+        },
+        {
+          "expression": "shopee",
+          "id": "7e7b2be7-c2f9-4bb8-be7c-c63759e0c3fc",
+          "type": "CONTAINS",
+          "workspaceId": 1758773307701
+        },
+        {
+          "expression": "whatsapp",
+          "id": "9497c30c-95a1-4959-8886-a4cd1cf7f289",
+          "type": "CONTAINS",
+          "workspaceId": 1758766843876
+        },
+        {
+          "expression": "telegram",
+          "id": "6d7d545c-8a9f-4b89-a45c-ad9c4703c86a",
+          "type": "CONTAINS",
+          "workspaceId": 1758766843876
+        },
+        {
+          "expression": "claude",
+          "id": "1907ada3-033d-42f6-a315-9823f36f4ba1",
+          "type": "CONTAINS",
+          "workspaceId": 1758766875815
+        },
+        {
+          "expression": "github",
+          "id": "85bf4fb2-4576-44d8-9cf1-da1a698ca4c0",
+          "type": "CONTAINS",
+          "workspaceId": 1765349912543
+        },
+        {
+          "expression": ".",
+          "id": "bd96cfd4-8cc2-47d5-bb47-eebb883df740",
+          "type": "CONTAINS",
+          "workspaceId": 1.76534885829E+12
+        },
+        {
+          "expression": "localhost",
+          "id": "02044698-8ea7-46be-bf49-82e688d1d785",
+          "type": "CONTAINS",
+          "workspaceId": 1765422156697
+        }
+      ],
+      "list": [
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M4.5 3.5H11.5C12.2956 3.5 13.0587 3.81607 13.6213 4.37868C14.1839 4.94129 14.5 5.70435 14.5 6.5V15.5H1.5V6.5C1.5 5.70435 1.81607 4.94129 2.37868 4.37868C2.94129 3.81607 3.70435 3.5 4.5 3.5V3.5Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M5.5 5.5V3C5.5 2.33696 5.76339 1.70107 6.23223 1.23223C6.70107 0.763392 7.33696 0.5 8 0.5V0.5C8.3283 0.5 8.65339 0.564664 8.95671 0.690301C9.26002 0.815938 9.53562 1.00009 9.76777 1.23223C9.99991 1.46438 10.1841 1.73998 10.3097 2.04329C10.4353 2.34661 10.5 2.6717 10.5 3V5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M6.5 8.5H9.5C10.0304 8.5 10.5391 8.71071 10.9142 9.08579C11.2893 9.46086 11.5 9.96957 11.5 10.5V12.5H4.5V10.5C4.5 9.96957 4.71071 9.46086 5.08579 9.08579C5.46086 8.71071 5.96957 8.5 6.5 8.5V8.5Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1758766256577,
+          "name": "kami"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M14.328 2.67201C12.766 1.11001 10.233 1.11001 8.67101 2.67201C8.39101 2.95201 8.18001 3.27001 8.00001 3.60101C7.82001 3.27001 7.60901 2.95101 7.32801 2.67101C5.76601 1.10901 3.23301 1.10901 1.67101 2.67101C0.109012 4.23301 0.109012 6.76601 1.67101 8.32801L8.00001 14.5L14.328 8.32801C15.891 6.76601 15.891 4.23401 14.328 2.67201Z\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1758766843876,
+          "name": "messenger"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M4.5 12.5V14.5H0.5V12.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M15.5 12.5V14.5H11.5V12.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M15.5 7.5H0.5V12.5H15.5V7.5Z\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M3 11C3.55228 11 4 10.5523 4 10C4 9.44772 3.55228 9 3 9C2.44772 9 2 9.44772 2 10C2 10.5523 2.44772 11 3 11Z\"/>\n  <path d=\"M13 11C13.5523 11 14 10.5523 14 10C14 9.44772 13.5523 9 13 9C12.4477 9 12 9.44772 12 10C12 10.5523 12.4477 11 13 11Z\"/>\n  <path d=\"M0.5 7.5L2.272 2.184C2.408 1.775 2.79 1.5 3.221 1.5H12.779C13.209 1.5 13.592 1.775 13.728 2.184L15.5 7.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1758766875815,
+          "name": "Ai"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M7.729 11.229L14.5 5.5L15.5 0.5L10.5 1.5L4.771 8.271\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M12.5 3.5L7.5 8.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M0.5 14L4.086 10.414L1.586 7.914L3 6.5L9.5 13L8.086 14.414L5.586 11.914L2 15.5L0.5 14Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1.75876696076E+12,
+          "name": "Media"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M4.5 3.5H11.5C12.2956 3.5 13.0587 3.81607 13.6213 4.37868C14.1839 4.94129 14.5 5.70435 14.5 6.5V15.5H1.5V6.5C1.5 5.70435 1.81607 4.94129 2.37868 4.37868C2.94129 3.81607 3.70435 3.5 4.5 3.5V3.5Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M5.5 5.5V3C5.5 2.33696 5.76339 1.70107 6.23223 1.23223C6.70107 0.763392 7.33696 0.5 8 0.5V0.5C8.3283 0.5 8.65339 0.564664 8.95671 0.690301C9.26002 0.815938 9.53562 1.00009 9.76777 1.23223C9.99991 1.46438 10.1841 1.73998 10.3097 2.04329C10.4353 2.34661 10.5 2.6717 10.5 3V5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M6.5 8.5H9.5C10.0304 8.5 10.5391 8.71071 10.9142 9.08579C11.2893 9.46086 11.5 9.96957 11.5 10.5V12.5H4.5V10.5C4.5 9.96957 4.71071 9.46086 5.08579 9.08579C5.46086 8.71071 5.96957 8.5 6.5 8.5V8.5Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1758766988839,
+          "name": "Oracle"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M12.5 1.5H13.5C13.7652 1.5 14.0196 1.60536 14.2071 1.79289C14.3946 1.98043 14.5 2.23478 14.5 2.5V14.5C14.5 14.7652 14.3946 15.0196 14.2071 15.2071C14.0196 15.3946 13.7652 15.5 13.5 15.5H2.5C2.23478 15.5 1.98043 15.3946 1.79289 15.2071C1.60536 15.0196 1.5 14.7652 1.5 14.5V2.5C1.5 2.23478 1.60536 1.98043 1.79289 1.79289C1.98043 1.60536 2.23478 1.5 2.5 1.5H3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M10.5 0.5H5.5V2.5H10.5V0.5Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M5 9L7 11L11 7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1758768267953,
+          "name": "google"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M3.5 4.5V14.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M12.5 4.5V14.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M5.5 4.5V1.5H10.5V4.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M14 4.5H2C1.17157 4.5 0.5 5.17157 0.5 6V13C0.5 13.8284 1.17157 14.5 2 14.5H14C14.8284 14.5 15.5 13.8284 15.5 13V6C15.5 5.17157 14.8284 4.5 14 4.5Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1758773307701,
+          "name": "mix"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M13.5 15.5H2.5L0.5 12.5H15.5L13.5 15.5Z\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M7.5 0.5V9.5H1.5L7.5 0.5Z\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M10.5 9.5V3.5L14.5 9.5H10.5Z\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1.76534885829E+12,
+          "name": "others"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M11.5 10.75C11.5 10.75 15.5 8.00001 15.5 5.75001C15.5024 5.28342 15.3591 4.82771 15.0901 4.44646C14.8211 4.06522 14.4398 3.77745 13.9994 3.62331C13.559 3.46917 13.0814 3.45634 12.6334 3.58661C12.1853 3.71688 11.7891 3.98376 11.5 4.35001C11.2109 3.98376 10.8147 3.71688 10.3667 3.58661C9.91863 3.45634 9.44109 3.46917 9.00068 3.62331C8.56028 3.77745 8.17897 4.06522 7.90995 4.44646C7.64094 4.82771 7.49763 5.28342 7.50003 5.75001C7.50003 8.00001 11.5 10.75 11.5 10.75Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M11.5 10.753C11.0645 11.1891 10.8199 11.7802 10.8199 12.3965C10.8199 13.0128 11.0645 13.6039 11.5 14.04C11.8899 14.4307 12.1253 14.9493 12.163 15.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M5.85599 15.5C6.01057 15.0489 6.03574 14.5636 5.92863 14.0989C5.82153 13.6343 5.58644 13.2089 5.24999 12.871C5.01218 12.6333 4.82354 12.351 4.69483 12.0404C4.56612 11.7297 4.49988 11.3968 4.49988 11.0605C4.49988 10.7242 4.56612 10.3913 4.69483 10.0806C4.82354 9.76998 5.01218 9.48773 5.24999 9.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M9.385 1.51802C9.13837 1.21327 8.82932 0.964891 8.47866 0.789589C8.12799 0.614287 7.74384 0.516132 7.35207 0.501731C6.96029 0.487329 6.56997 0.557015 6.20738 0.706098C5.84479 0.855181 5.51834 1.0802 5.25 1.36602C4.87267 0.964714 4.38343 0.686071 3.84578 0.566244C3.30813 0.446417 2.74688 0.490937 2.23484 0.694027C1.7228 0.897117 1.28362 1.2494 0.974269 1.70518C0.664919 2.16095 0.499683 2.69918 0.5 3.25002C0.5 6.00002 5.25 9.25002 5.25 9.25002C5.25 9.25002 5.714 8.93202 6.35 8.41102\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1765349912543,
+          "name": "github"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M13.5 3.5H15.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M10.5 6.5H2C1.60218 6.5 1.22064 6.34196 0.93934 6.06066C0.658035 5.77936 0.5 5.39782 0.5 5V2C0.5 1.60218 0.658035 1.22064 0.93934 0.93934C1.22064 0.658035 1.60218 0.5 2 0.5H10.5L13.5 1.5V5.5L10.5 6.5Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M7.5 6.5L6.687 10.565C6.63667 10.8169 6.68525 11.0786 6.82266 11.2957C6.96006 11.5128 7.17575 11.6687 7.425 11.731L9.364 12.216C9.68846 12.2972 9.97649 12.4844 10.1823 12.7481C10.3881 13.0117 10.5 13.3365 10.5 13.671V15.5H0.5V13.427C0.499917 13.1484 0.57743 12.8753 0.723853 12.6382C0.870276 12.4012 1.07982 12.2096 1.329 12.085L2.063 11.719C2.19933 11.6507 2.31824 11.5521 2.41062 11.4308C2.503 11.3094 2.56641 11.1686 2.596 11.019L3.5 6.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M10.5 0.5V6.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M2.5 4.5H5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M2.5 2.5H5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1765422156697,
+          "name": "localhost"
+        }
+      ]
+    }

@@ -25,3 +25,12 @@ else
     export VISUAL=vim
 	export EDITOR=vim
 fi
+
+export SQLPATH=$HOME/.sqlcl
+# Oracle Instant Client
+export ORACLE_HOME=/opt/oracle/instantclient
+export PATH=$ORACLE_HOME:$PATH
+export LD_LIBRARY_PATH=$ORACLE_HOME:$LD_LIBRARY_PATH
+# --- THÊM DÒNG NÀY CHO SQLCL ---
+# Khi chạy lệnh 'sql', tạm thời set ORACLE_HOME rỗng
+alias sql='ORACLE_HOME="" sql'
