@@ -19,6 +19,7 @@ PACKAGES=(
 	"tmux"
 	"warpd"
 	"Dic"
+	"sqlcl"
 	# "scripts"
 )
 
