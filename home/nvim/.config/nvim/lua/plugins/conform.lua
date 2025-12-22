@@ -1,27 +1,21 @@
 return {
-  "stevearc/conform.nvim",
-  opts = {
-    formatters_by_ft = {
-      sql = { "pg_format" },
-      plsql = { "pg_format" },
-    },
-    formatters = {
-      pg_format = {
-        command = "pg_format",
-        args = { "$FILENAME", "-o", "$FILENAME" }, -- Ghi đè file gốc
-        stdin = false,
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        -- Khai báo file sql dùng sqlfluff
+        sql = { "sqlfluff" },
+        plsql = { "sqlfluff" },
+      },
+      formatters = {
+        sqlfluff = {
+          -- "fix" để sửa lỗi
+          -- "--dialect oracle" để hiểu cú pháp Oracle
+          -- "-" là ký hiệu báo cho tool đọc từ stdin (bộ nhớ đệm của Neovim)
+          args = { "fix", "--dialect", "oracle", "-" },
+          stdin = true, -- Quan trọng: Cho phép neovim gửi code qua luồng input
+        },
       },
     },
   },
-  -- config = function(_, opts)
-  --   require("conform").setup(opts)
-  --   -- Thêm bước sed để xuống dòng sau ;
-  --   vim.api.nvim_create_autocmd("BufWritePost", {
-  --     pattern = "*.sql",
-  --     callback = function()
-  --       vim.fn.system("sed -i 's/;/;\\n/g' " .. vim.fn.expand("%"))
-  --       vim.cmd("e!") -- Reload file sau khi sed chạy
-  --     end,
-  --   })
-  -- end,
 }
