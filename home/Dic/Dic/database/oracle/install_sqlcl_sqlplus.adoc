@@ -1,0 +1,142 @@
+= Cách cài đặt sqlcl và sqlplus 
+
+Đây là bài tóm tắt tổng hợp toàn bộ quá trình cài đặt và xử lý lỗi để bạn có một môi trường làm việc hoàn hảo: **Neovim (Dadbod) chạy siêu nhanh với Native SQL*Plus** và **Terminal chạy SQLcl giao diện đẹp**, không bị xung đột.
+
+---
+
+### PHẦN 1: Script Cài đặt & Sửa lỗi Thư viện (Chạy 1 lần)
+
+Script này thực hiện 3 việc: cài đặt Oracle Instant Client, cài thư viện thiếu (`libaio`) trên Ubuntu mới, và đăng ký thư viện vào hệ thống để Neovim nhận diện được.
+
+Bạn copy và chạy từng block lệnh sau trong Terminal:
+
+```bash
+# 1. Tạo thư mục và tải bộ cài (Phiên bản 19.x ổn định)
+sudo mkdir -p /opt/oracle
+cd /tmp
+wget https://download.oracle.com/otn_software/linux/instantclient/1919000/instantclient-basic-linux.x64-19.19.0.0.0dbru.zip
+wget https://download.oracle.com/otn_software/linux/instantclient/1919000/instantclient-sqlplus-linux.x64-19.19.0.0.0dbru.zip
+
+# 2. Giải nén vào /opt/oracle
+sudo unzip instantclient-basic-linux.x64-19.19.0.0.0dbru.zip -d /opt/oracle/
+sudo unzip instantclient-sqlplus-linux.x64-19.19.0.0.0dbru.zip -d /opt/oracle/
+sudo mv /opt/oracle/instantclient_19_19 /opt/oracle/instantclient
+
+# 3. Cài đặt thư viện libaio (Khắc phục lỗi cho Ubuntu 24.04/Noble)
+sudo apt update
+sudo apt install libaio1t64
+
+# 4. Tạo Symlink để đánh lừa Oracle (Sửa lỗi "cannot open shared object file")
+cd /usr/lib/x86_64-linux-gnu
+# Lệnh này trỏ cái tên cũ (libaio.so.1) vào file mới (libaio.so.1t64)
+sudo ln -s libaio.so.1t64 libaio.so.1
+
+# 5. Đăng ký thư viện với hệ thống (Sửa lỗi "libsqlplus.so" trong Neovim)
+# Bước này thay thế cho việc set LD_LIBRARY_PATH thủ công dễ gây lỗi
+echo "/opt/oracle/instantclient" | sudo tee /etc/ld.so.conf.d/oracle-instantclient.conf
+sudo ldconfig
+
+```
+
+---
+
+### PHẦN 2: Cấu hình Environment (Export & Alias)
+
+Đây là bước quan trọng để **`sqlplus`** (cần biến môi trường) và **`sqlcl`** (kỵ biến môi trường) sống hòa thuận.
+
+Mở file cấu hình shell của bạn (`~/.zshrc` hoặc `~/.bashrc`) và thêm đoạn sau vào cuối:
+
+```bash
+# === ORACLE CONFIGURATION ===
+
+# 1. Cấu hình cho SQL*Plus (Native C)
+# Chỉ cần set ORACLE_HOME và PATH. 
+# KHÔNG set LD_LIBRARY_PATH ở đây (vì đã dùng ldconfig ở Phần 1)
+export ORACLE_HOME=/opt/oracle/instantclient
+export LD_LIBRARY_PATH=$ORACLE_HOME:$LD_LIBRARY_PATH
+export PATH=$ORACLE_HOME:$PATH
+
+# 2. Cấu hình cho SQLcl (Java)
+# Tạo Alias để khi chạy lệnh 'sql', nó tự động xóa biến môi trường
+# giúp SQLcl chạy chế độ Thin (Java thuần) -> Không bị lỗi Connection Failed
+alias sql='ORACLE_HOME="" TNS_ADMIN="" sql'
+
+# 3. Cấu hình làm đẹp cho SQLcl (Tự load file login.sql)
+export SQLPATH=~
+
+```
+
+*Sau khi lưu file, nhớ chạy `source ~/.zshrc` (hoặc `.bashrc`) để áp dụng.*
+
+---
+
+### PHẦN 3: Cấu hình Neovim (Vim-Dadbod)
+
+Cấu hình này giúp Dadbod tự nhận diện `sqlplus` native (đã cài ở Phần 1) để query cực nhanh và không bị đơ máy.
+
+File: `~/.config/nvim/lua/plugins/database.lua`
+
+```lua
+return {
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "plsql", "mysql" }, lazy = true }, 
+    },
+    cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection" },
+    init = function()
+      -- Giao diện & Hiệu năng
+      vim.g.db_ui_use_nerd_fonts = 1
+      vim.g.db_ui_show_database_icon = 1
+      vim.g.db_ui_execute_on_save = 0       -- Tắt auto-execute để tránh lag
+      
+      -- Dadbod sẽ tự tìm thấy sqlplus trong PATH nhờ cấu hình ở Phần 2
+    end,
+  },
+  -- Tích hợp Autocomplete
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "vim-dadbod-completion" })
+    end,
+  },
+}
+
+```
+
+---
+
+### PHẦN 4: Làm đẹp SQLcl (Optional)
+
+Để khi gõ lệnh `sql` ngoài terminal, bảng dữ liệu tự động căn lề đẹp như Excel.
+
+1. Tạo file `login.sql` tại thư mục Home:
+```bash
+nano ~/login.sql
+
+```
+
+
+2. Dán nội dung:
+```sql
+set sqlformat ansiconsole
+set pagesize 100
+set timing on
+
+```
+
+
+
+---
+
+### TỔNG KẾT CÁCH SỬ DỤNG
+
+1. **Trong Neovim:**
+* Kết nối Dadbod UI: `oracle://sys:pass@localhost:1521/FREE as sysdba` (hoặc `/FREEPDB1`).
+* Tốc độ: Nhanh (nhờ `sqlplus` native).
+
+
+2. **Ngoài Terminal:**
+* Lệnh kết nối: `sql sys/pass@localhost:1521/FREE as sysdba`
+* Giao diện: Đẹp, tự căn lề (nhờ `alias` và `login.sql`).
