@@ -15,6 +15,7 @@ ALIAS fzed=HOST ~/.sqlcl/pick_sql.sh
 ALIAS reload=@~/.sqlcl/login.sql
 ALIAS cls=CLEAR SCREEN
 
+alias whoami=select sys_context('userenv','con_name') con, user from dual;
 -- --- PROMPT (PDB Name) ---
 COLUMN current_pdb NEW_VALUE _my_pdb NOPRINT
 SELECT sys_context('userenv', 'con_name') AS current_pdb FROM dual;
