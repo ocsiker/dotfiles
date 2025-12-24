@@ -1,0 +1,26 @@
+#!/bin/bash
+
+ff() {
+	# 1. Định nghĩa lệnh Preview
+	# Nếu có 'bat', dùng nó để tô màu. Nếu không, dùng 'cat'
+	if command -v bat >/dev/null 2>&1; then
+		# --color=always: Bắt buộc hiện màu để fzf hiểu
+		# --style=numbers: Hiện số dòng
+		PREVIEW_CMD="bat --style=numbers --color=always {}"
+	else
+		echo "Cảnh báo: Bạn chưa cài 'bat', file sẽ không có màu."
+		PREVIEW_CMD="cat {}"
+	fi
+
+	# 2. Chạy FZF
+	# Lưu ý: bat sẽ tự động nhận diện đuôi .adoc để tô màu
+	fzf --preview "$PREVIEW_CMD" \
+		--preview-window=right:65%:wrap \
+		--bind 'ctrl-u:preview-page-up' \
+		--bind 'ctrl-d:preview-page-down' \
+		--bind 'shift-up:preview-up' \
+		--bind 'shift-down:preview-down' \
+		--header 'Di chuyển: Shift-Up/Down | Trang: Ctrl-U/D' \
+		--height 95% --layout=reverse --border
+}
+ff

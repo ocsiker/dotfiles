@@ -38,3 +38,7 @@ alias sql='ORACLE_HOME="" sql'
 # for plantuml
 export DIAGRAM_PLANTUML_CLASSPATH="$HOME/.lib/plantuml.jar"
 
+export BAT_THEME="TwoDark" 
+# xem themes bat --list-themes
+# Hoặc "OneHalfDark"--> giong "OneDark", "GitHub", v.v.
+
