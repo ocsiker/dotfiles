@@ -20,6 +20,7 @@ PACKAGES=(
 	"warpd"
 	"Dic"
 	"sqlcl"
+	"lib"
 	# "scripts"
 )
 

@@ -34,3 +34,7 @@ export PATH=$ORACLE_HOME:$PATH
 # --- THÊM DÒNG NÀY CHO SQLCL ---
 # Khi chạy lệnh 'sql', tạm thời set ORACLE_HOME rỗng
 alias sql='ORACLE_HOME="" sql'
+#
+# for plantuml
+export DIAGRAM_PLANTUML_CLASSPATH="$HOME/.lib/plantuml.jar"
+

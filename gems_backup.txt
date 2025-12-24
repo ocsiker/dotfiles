@@ -1,0 +1,6 @@
+rouge
+asciidoctor
+asciidoctor-diagram
+asciidoctor-diagram-batik
+asciidoctor-diagram-plantuml
+asciidoctor-pdf
