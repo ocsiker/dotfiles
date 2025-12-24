@@ -3,6 +3,7 @@
 SET SQLFORMAT ansiconsole
 SET PAGESIZE 1000
 SET LINESIZE 300
+SET HISTORY limit 5000
 
 -- --- ALIASES ---
 -- Thay vì viết dài dòng, Alias này chỉ gọi file fzf_run.sql ta tạo ở Bước 1
