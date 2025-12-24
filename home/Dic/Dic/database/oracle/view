@@ -1,0 +1,33 @@
+= Các xem các bảng trong Oracle Database
+
+| Tiền tố View | Phạm vi dữ liệu    | Mô tả                                                        |
+|--------------+--------------------+--------------------------------------------------------------|
+| USER_        | Local (PDB/Root)   | Chỉ xem các bảng do user hiện tại sở hữu.                    |
+| ALL_         | Local (PDB/Root)   | Xem các bảng user hiện tại có quyền truy cập.                |
+| CDB_         | Global / Hierarchy | Xem dữ liệu xuyên suốt các Container (Root + các PDB con).   |
+| DBA_         | Local (PDB/Root)   | Xem toàn bộ bảng trong Container hiện tại (cần quyền Admin). |
+
+
+```
+-- Cách 1: Dùng View CDB_PDBS (Chi tiết nhất)
+SELECT con_id, name, open_mode, application_root, application_pdb 
+FROM cdb_pdbs;
+
+-- Cách 2: Dùng V$PDBS (Dynamic view của instance hiện tại)
+SELECT con_id, name, open_mode FROM v$pdbs;
+
+-- Cách 3: Dùng lệnh tắt của SQLcl/SQLPlus
+show pdbs
+```
+
+Trong Application root
+
+```
+
+```
+
+| Mục đích          | Đứng ở CDB$ROOT                     | Đứng ở App Root                         | Đứng ở PDB (App/Std)                     |
+|-------------------+-------------------------------------+-----------------------------------------+------------------------------------------|
+| Xem list PDB      | show pdbs (thấy tất cả)             | show pdbs (thấy App PDBs con)           | show pdbs (chỉ thấy mình)                |
+| Xem bảng của User | SELECT ... FROM cdb_tables          | SELECT ... FROM cdb_tables              | SELECT ... FROM dba_tables               |
+| Chuyển cấp độ     | alter session set container = PDB1; | alter session set container = APP_PDB1; | alter session set container = CDB$ROOT;\ |
