@@ -1,2 +1,2 @@
-PROMPT Executing: /home/ocsiker/test.sql
-@/home/ocsiker/test.sql
+PROMPT Executing: /home/ocsiker/dotfiles/home/sqlcl/.sqlcl/login.sql
+@/home/ocsiker/dotfiles/home/sqlcl/.sqlcl/login.sql
