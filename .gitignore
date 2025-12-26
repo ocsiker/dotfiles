@@ -1,3 +1,4 @@
 *.log
 *.xml
 alias*
+home/alacritty/.config/alacritty/alacritty.toml
