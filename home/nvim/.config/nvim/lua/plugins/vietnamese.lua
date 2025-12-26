@@ -13,9 +13,9 @@ return {
     })
     -- 2. Gán phím thủ công bằng vim.keymap.set (Ổn định hơn)
     -- Gán cho Normal Mode
-    vim.keymap.set("n", "<C-t>", "<cmd>VietnameseToggle<CR>", { desc = "Bật/Tắt Tiếng Việt" })
+    vim.keymap.set("n", "<C-h>", "<cmd>VietnameseToggle<CR>", { desc = "Bật/Tắt Tiếng Việt" })
 
     -- Gán cho Insert Mode (Cho phép vừa gõ vừa tắt)
-    vim.keymap.set("i", "<C-t>", "<cmd>VietnameseToggle<CR>", { desc = "Bật/Tắt Tiếng Việt" })
+    vim.keymap.set("i", "<C-h>", "<cmd>VietnameseToggle<CR>", { desc = "Bật/Tắt Tiếng Việt" })
   end,
 }
