@@ -5,42 +5,43 @@ return {
     "sontungexpt/bim.nvim",
   },
   config = function()
-    -- Setup plugin
+    -- 1. Setup Plugin
     require("vietnamese").setup({
-      enabled = true, -- Mặc định bật khi mở máy
+      enabled = true,
       input_method = "telex",
       orthography = "modern",
       excluded = {},
       custom_methods = {},
     })
 
-    -- 1. Tự tạo biến toàn cục để theo dõi trạng thái (Vì plugin không cho API check)
+    -- 2. Khởi tạo biến trạng thái (Quan trọng để Lualine đọc)
     vim.g.vietnamese_enabled = true
 
-    -- 2. Hàm Toggle sửa lỗi
-    local function toggle_vn()
-      -- THAY ĐỔI QUAN TRỌNG: Gọi lệnh Vim command thay vì hàm Lua bị lỗi
-      vim.cmd("VietnameseToggle")
-
-      -- Đảo ngược trạng thái biến theo dõi của mình
+    -- 3. Tạo một hàm Global (Toàn cục) chỉ để cập nhật giao diện
+    -- (Ta dùng _G để có thể gọi nó từ chuỗi phím tắt bên dưới)
+    _G.update_vn_ui = function()
+      -- Đảo ngược trạng thái biến của mình
       vim.g.vietnamese_enabled = not vim.g.vietnamese_enabled
 
-      -- Force Lualine cập nhật lại ngay lập tức
+      -- Refresh Lualine
       local ok, lualine = pcall(require, "lualine")
       if ok then
         lualine.refresh()
       end
 
-      -- Hiển thị thông báo
+      -- Thông báo (Optional)
       if vim.g.vietnamese_enabled then
-        vim.notify("Đã BẬT Tiếng Việt", vim.log.levels.INFO, { title = "Bộ gõ" })
+        vim.notify("VN", vim.log.levels.INFO, { title = "Bộ gõ" })
       else
-        vim.notify("Đã TẮT Tiếng Việt (English)", vim.log.levels.WARN, { title = "Bộ gõ" })
+        vim.notify("EN", vim.log.levels.WARN, { title = "Bộ gõ" })
       end
     end
 
-    -- 3. Map phím
-    vim.keymap.set("n", "<C-u>", toggle_vn, { desc = "Bật/Tắt Tiếng Việt" })
-    vim.keymap.set("i", "<C-u>", toggle_vn, { desc = "Bật/Tắt Tiếng Việt" })
+    -- 4. Map phím theo kiểu "Kẹp thịt" (Chaining)
+    -- Nó sẽ chạy lệnh Toggle gốc trước -> Sau đó chạy lệnh Lua để update UI
+    local map_cmd = "<cmd>VietnameseToggle<CR><cmd>lua _G.update_vn_ui()<CR>"
+
+    vim.keymap.set("n", "<C-u>", map_cmd, { desc = "Bật/Tắt Tiếng Việt" })
+    vim.keymap.set("i", "<C-u>", map_cmd, { desc = "Bật/Tắt Tiếng Việt" })
   end,
 }
