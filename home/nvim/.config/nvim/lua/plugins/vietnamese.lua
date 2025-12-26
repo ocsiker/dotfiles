@@ -11,5 +11,11 @@ return {
       input_method = "telex", -- Chọn bộ gõ: "telex", "vni", hoặc "viqr"
       orthography = "modern", -- Kiểu bỏ dấu: "modern" (hòa) hoặc "old" (hoà)
     })
+    -- 2. Gán phím thủ công bằng vim.keymap.set (Ổn định hơn)
+    -- Gán cho Normal Mode
+    vim.keymap.set("n", "<C-t>", "<cmd>VietnameseToggle<CR>", { desc = "Bật/Tắt Tiếng Việt" })
+
+    -- Gán cho Insert Mode (Cho phép vừa gõ vừa tắt)
+    vim.keymap.set("i", "<C-t>", "<cmd>VietnameseToggle<CR>", { desc = "Bật/Tắt Tiếng Việt" })
   end,
 }
