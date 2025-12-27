@@ -41,7 +41,7 @@ return {
     -- Nó sẽ chạy lệnh Toggle gốc trước -> Sau đó chạy lệnh Lua để update UI
     local map_cmd = "<cmd>VietnameseToggle<CR><cmd>lua _G.update_vn_ui()<CR>"
 
-    vim.keymap.set("n", "<C-u>", map_cmd, { desc = "Bật/Tắt Tiếng Việt" })
-    vim.keymap.set("i", "<C-u>", map_cmd, { desc = "Bật/Tắt Tiếng Việt" })
+    vim.keymap.set("n", "<C-i>", map_cmd, { desc = "Bật/Tắt Tiếng Việt" })
+    vim.keymap.set("i", "<C-i>", map_cmd, { desc = "Bật/Tắt Tiếng Việt" })
   end,
 }
