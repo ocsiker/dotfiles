@@ -52,16 +52,16 @@ return {
       vim.g.db_ui_auto_execute_table_helpers = 1
       vim.g.db_ui_win_position = "right"
       vim.g.db_ui_save_location = "~/Alpha/sourceCode/sql"
-      vim.g.dbs = {
-        {
-          name = "Oracle_Free_CUser",
-          -- Lưu ý: Dùng nháy đơn ' ' bao bên ngoài để giữ nguyên nháy kép " " bên trong
-          url = 'oracle://"C%23%23USER1":Ocs045027@localhost:1521/FREE',
-        },
-      }
-      -- === CẤU HÌNH CHO ORACLE ===
-      -- Đảm bảo Dadbod dùng đúng sqlplus native bạn vừa sửa
-      -- (Nếu nó tự nhận rồi thì tốt, dòng này để chắc chắn)
+      --
+      -- NOTE:connect using common user c## to dba
+      -- vim.g.dbs = {
+      --   {
+      --     name = "Oracle_Free_CUser",
+      --     -- Lưu ý: Dùng nháy đơn ' ' bao bên ngoài để giữ nguyên nháy kép " " bên trong
+      --     url = 'oracle://"C%23%23USER1":Ocs045027@localhost:1521/FREE',
+      --   },
+      -- }
+
       if vim.fn.executable("sqlplus") == 1 then
         -- Neovim sẽ ưu tiên dùng sqlplus có sẵn trong PATH
         -- Không cần trỏ đường dẫn cứng nếu bạn đã gõ được sqlplus trong terminal
